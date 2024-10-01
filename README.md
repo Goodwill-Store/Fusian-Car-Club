@@ -1,5 +1,13 @@
 # Fusian Car Club
 
+## Links
+[CAP4102_UXTeamAssignments](https://docs.google.com/document/d/1ZVZk1RfiqPzSQsEQQ5x_vV8q3UlE2n_T/edit?usp=sharing&ouid=115397654471199893888&rtpof=true&sd=true)
+
+[Environment Setup Notes](https://docs.google.com/document/d/1pr3JQfd1dp6hwQ7NQNPhRJFPy-I8D3ZZvA5_jo24Z8A/edit?usp=sharing)
+
+[Fusian_club_sketch Slides](https://docs.google.com/presentation/d/1w6dbG9HJ0xVxpDDdSy5v9kBXm6s9jn6V/edit?usp=sharing&ouid=115397654471199893888&rtpof=true&sd=true)
+
+
 ## How to Run the App Locally
 
 Follow these steps to run the app on your local machine:
