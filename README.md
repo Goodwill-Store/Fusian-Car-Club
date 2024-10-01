@@ -2,7 +2,7 @@
 
 ## How to Run the App Locally
 
-Follow these steps to set up and run the Fusian Car Club app on your local machine:
+Follow these steps to run the app on your local machine:
 
 1. **Install dependencies for the entire project**:
    - Navigate to the root folder and run:
