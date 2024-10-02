@@ -1,23 +1,19 @@
-import { useEffect, useState } from 'react';
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
 import './App.css'
+import Test from './Test';
+import Home from './Home';
+import Checkapi from './Checkapi';
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 
 function App() {
-  const [data, setData] = useState(null);
-
-  useEffect(() => {
-    fetch('/api') // Proxy will forward this to http://localhost:3000/api
-      .then((response) => response.json())
-      .then((result) => setData(result))
-      .catch((error) => console.error('Error fetching data:', error));
-  }, []);
 
   return (
-    <div>
-      <h1>API Data</h1>
-      {data ? <pre>{JSON.stringify(data, null, 2)}</pre> : <p>Loading...</p>}
-    </div>
+    <Router>
+      <Routes>
+        <Route path="/" element={<Home />} />
+        <Route path="/test" element={<Test />} />
+        <Route path="/checkapi" element={<Checkapi />} />
+      </Routes>
+    </Router>
   );
 }
 
