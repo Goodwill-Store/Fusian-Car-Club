@@ -7,6 +7,10 @@
 
 [Fusian_club_sketch Slides](https://docs.google.com/presentation/d/1w6dbG9HJ0xVxpDDdSy5v9kBXm6s9jn6V/edit?usp=sharing&ouid=115397654471199893888&rtpof=true&sd=true)
 
+[https://styled-components.com/](https://styled-components.com/)
+
+[MUI Theme Creator](https://zenoo.github.io/mui-theme-creator/#Alert)
+
 
 ## How to Run the App Locally
 
