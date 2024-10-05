@@ -1,10 +1,7 @@
 import { useEffect, useState } from 'react';
-import ResponsiveAppBar from '../components/ResponsiveAppBar';
-import Footer from '../components/Footer';
 import Box from '@mui/material/Box';
 import Paper from '@mui/material/Paper';
 import Typography from '@mui/material/Typography';
-import { CssBaseline } from '@mui/material';
 
 function Checkapi() {
     const [data, setData] = useState(null);
@@ -18,7 +15,6 @@ function Checkapi() {
 
     return (
         <Box>
-            <ResponsiveAppBar />
             <Box sx={{
                 height: '75vh',
                 display: 'flex',
@@ -32,8 +28,6 @@ function Checkapi() {
                     {data ? <pre>{JSON.stringify(data, null, 2)}</pre> : <p>Loading...</p>}
                 </Paper>
             </Box>
-            <Footer />
-            <CssBaseline />
         </Box>
     );
 }
