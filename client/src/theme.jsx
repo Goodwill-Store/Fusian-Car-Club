@@ -20,9 +20,11 @@ const theme = createTheme({
     typography: {
         h1: {
             fontSize: '2rem', // Customize heading sizes
+            color: 'white'
         },
         body1: {
             fontSize: '1rem',
+            color: 'white'
         },
     },
     components: {
