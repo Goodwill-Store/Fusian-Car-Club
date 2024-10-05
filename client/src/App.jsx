@@ -1,15 +1,16 @@
 import './App.css'
-import Test from './pages/Test';
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import Home from './pages/Home';
+import Test from './pages/Test';
 import Checkapi from './pages/Checkapi';
-import { ThemeProvider } from '@mui/material/styles';
-import theme from './theme'; // applying custom theme globally
 import ResponsiveAppBar from './components/ResponsiveAppBar';
 import Footer from './components/Footer';
+import { ThemeProvider } from '@mui/material/styles';
+import theme from './theme'; // applying custom theme globally
 import { CssBaseline } from '@mui/material';
 
-import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
-
+//This is the main application component that uses our child components(Home, Test, etc) to build the page
+//It also defines routes, path is the url and element tells it which component to render. Note component has to be imported first.
 function App() {
 
   return (
