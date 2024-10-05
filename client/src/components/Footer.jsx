@@ -11,8 +11,9 @@ const Footer = () => {
             sx={{
                 bgcolor: 'primary.main',
                 color: 'white',
+                height: '20vh',
                 textAlign: 'center',
-                padding: '16px 0'
+                pt: '30px'
             }}
         >
             <Typography variant="body2">

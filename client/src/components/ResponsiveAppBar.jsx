@@ -12,8 +12,16 @@ import Button from '@mui/material/Button';
 import Tooltip from '@mui/material/Tooltip';
 import MenuItem from '@mui/material/MenuItem';
 import AdbIcon from '@mui/icons-material/Adb';
+import { Link } from 'react-router-dom';
 
-const pages = ['Home', 'Merch', 'Events', 'Gallery', 'Blog'];
+const pages = [
+    { label: 'Home', url: '/' },
+    { label: 'Merch', url: '/checkapi' },
+    { label: 'Events', url: '/test' },
+    { label: 'Gallery', url: '/' },
+    { label: 'Blog', url: '/' },
+];
+
 const settings = ['Profile', 'Account', 'Dashboard', 'Logout'];
 
 function ResponsiveAppBar() {
@@ -44,7 +52,7 @@ function ResponsiveAppBar() {
                         variant="h6"
                         noWrap
                         component="a"
-                        href="#app-bar-with-responsive-menu"
+                        href="/"
                         sx={{
                             mr: 2,
                             display: { xs: 'none', md: 'flex' },
@@ -84,10 +92,12 @@ function ResponsiveAppBar() {
                             open={Boolean(anchorElNav)}
                             onClose={handleCloseNavMenu}
                             sx={{ display: { xs: 'block', md: 'none' } }}
+
                         >
-                            {pages.map((page) => (
-                                <MenuItem key={page} onClick={handleCloseNavMenu}>
-                                    <Typography sx={{ textAlign: 'center' }}>{page}</Typography>
+
+                            {pages.map((item) => (
+                                <MenuItem key={item.label} onClick={handleCloseNavMenu}>
+                                    <Typography href={item.url} sx={{ textAlign: 'center' }}>{item.label}</Typography>
                                 </MenuItem>
                             ))}
                         </Menu>
@@ -112,13 +122,14 @@ function ResponsiveAppBar() {
                         LOGO
                     </Typography>
                     <Box sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex' } }}>
-                        {pages.map((page) => (
+                        {pages.map((item) => (
                             <Button
-                                key={page}
+                                key={item.label}
                                 onClick={handleCloseNavMenu}
+                                href={item.url}
                                 sx={{ my: 2, color: 'white', display: 'block' }}
                             >
-                                {page}
+                                {item.label}
                             </Button>
                         ))}
                     </Box>

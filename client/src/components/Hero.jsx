@@ -7,10 +7,7 @@ const Hero = () => {
         <Box
             sx={{
                 position: 'relative',
-                height: '100vh',
-                // backgroundImage: `url(${heroImage})`,
-                // backgroundSize: 'cover',
-                // backgroundPosition: 'center',
+                height: '90vh',
                 color: 'white',
                 display: 'flex',
                 alignItems: 'center',
