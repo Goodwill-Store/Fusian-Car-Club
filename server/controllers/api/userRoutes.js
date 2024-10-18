@@ -5,7 +5,7 @@ const { User } = require('../../models');
 router.post('/signup', async (req, res) => {
     try {
       const userData = await User.create({
-        user_name: req.body.user_name,
+        user_name: req.body.username,
         email: req.body.email,
         password: req.body.password,
       });
@@ -17,8 +17,16 @@ router.post('/signup', async (req, res) => {
         res.status(200).json(userData);
       });
     } catch (err) {
+        console.log(req.body);
       res.status(400).json(err);
     }
+  });
+
+  router.get('/', (req, res) => {
+    console.log("Test user route")
+    res.json([
+        { test: 'it hits the route though' },
+      ]);
   });
 
   module.exports = router;
