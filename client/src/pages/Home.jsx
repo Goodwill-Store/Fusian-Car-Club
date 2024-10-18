@@ -1,10 +1,25 @@
-import React from 'react';
+import React, { useState } from 'react';
 import Hero from '../components/Hero';
-import { CssBaseline, Box } from '@mui/material';
+import SignUpDialog from '../components/SignUpDialog';
 
 function Home() {
+    const [open, setOpen] = useState(false);
+
+    const handleClickOpen = () => {
+        setOpen(true);
+    };
+
+    const handleClose = () => {
+        setOpen(false);
+    };
     return (
-        <Hero />
+        <div>
+            {/* Pass the open handler to Hero */}
+            <Hero onGetStartedClick={handleClickOpen} />
+
+            {/* SignUp Dialog */}
+            <SignUpDialog open={open} onClose={handleClose} />
+        </div>
     );
 }
 

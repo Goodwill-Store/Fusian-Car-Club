@@ -25,6 +25,7 @@ const sequelize = new Sequelize(
     }
 })();
 
+//create tables and schema if don't already exist
 sequelize.sync({ force: false })
   .then(() => {
     console.log('Database & tables created!');

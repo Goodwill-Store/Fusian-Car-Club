@@ -51,6 +51,13 @@ const theme = createTheme({
                 },
             },
         },
+        MuiInputLabel: {
+            styleOverrides: {
+                root: {
+                    color: '#000000', // Black label text
+                },
+            },
+        },
     },
 });
 

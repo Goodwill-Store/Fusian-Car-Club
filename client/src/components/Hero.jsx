@@ -1,7 +1,7 @@
 import React from 'react';
 import { Box, Typography, Button } from '@mui/material';
 
-const Hero = () => {
+const Hero = ({ onGetStartedClick }) => {
     return (
         <Box
             sx={{
@@ -30,7 +30,7 @@ const Hero = () => {
                 <Typography variant="h5" gutterBottom>
                     Discover amazing content and connect with us!
                 </Typography>
-                <Button variant="contained" color="primary">
+                <Button variant="contained" color="primary" onClick={onGetStartedClick}>
                     Get Started
                 </Button>
             </Box>
