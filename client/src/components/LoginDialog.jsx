@@ -64,12 +64,13 @@ function LoginDialog({ open, onClose }) {
                 <Button onClick={onClose} color="secondary">
                     Cancel
                 </Button>
-                {/* <Button onClick={handleSignUp} color="primary">
-                    Sign Up
-                </Button> */}
+                <Button onClick={handleLogin} color="primary">
+                    Login
+                </Button>
             </DialogActions>
         </Dialog>
     );
 }
 
 export default LoginDialog;
+
