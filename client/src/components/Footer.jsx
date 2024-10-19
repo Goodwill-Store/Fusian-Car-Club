@@ -1,5 +1,5 @@
 import React from 'react';
-import { Box, Button, IconButton, List, ListItem, Divider } from '@mui/material';
+import { Box, Button, IconButton, List, ListItem, Divider, Typography } from '@mui/material';
 import TextField from '@mui/material/TextField';
 import Grid from '@mui/material/Grid2';
 import GitHubIcon from '@mui/icons-material/GitHub';
@@ -7,6 +7,7 @@ import InstagramIcon from '@mui/icons-material/Instagram';
 import FacebookIcon from '@mui/icons-material/Facebook';
 
 const Footer = () => {
+    const currentYear = new Date().getFullYear();
     return (
         <Box
             component="footer"
@@ -76,32 +77,49 @@ const Footer = () => {
                 </Grid>
             </Grid>
             <Divider sx={{ width: '100%', marginBottom: 1, backgroundColor: 'white' }} />
-            <Box sx={{ marginTop: 1, display: 'flex', justifyContent: 'flex-end' }}>
-                <IconButton
-                    color="inherit"
-                    href="https://github.com"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                >
-                    <GitHubIcon />
-                </IconButton>
-                <IconButton
-                    color="inherit"
-                    href="https://instagram.com"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                >
-                    <InstagramIcon />
-                </IconButton>
-                <IconButton
-                    color="inherit"
-                    href="https://facebook.com"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                >
-                    <FacebookIcon />
-                </IconButton>
+            <Box
+                sx={{
+                    display: 'flex',
+                    justifyContent: 'space-between',
+                    alignItems: 'center',
+                    marginTop: 1,
+                    height: '100%',
+                }}
+            >
+                <Box sx={{ display: 'flex' }}>
+                    <Typography variant="body2" sx={{ marginTop: 1 }}>
+                        &copy; {currentYear} Fusian Car Club. All rights reserved.
+                    </Typography>
+                </Box>
+
+                <Box sx={{ display: 'flex' }}>
+                    <IconButton
+                        color="inherit"
+                        href="https://github.com"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                    >
+                        <GitHubIcon />
+                    </IconButton>
+                    <IconButton
+                        color="inherit"
+                        href="https://instagram.com"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                    >
+                        <InstagramIcon />
+                    </IconButton>
+                    <IconButton
+                        color="inherit"
+                        href="https://facebook.com"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                    >
+                        <FacebookIcon />
+                    </IconButton>
+                </Box>
             </Box>
+
         </Box>
     );
 };
