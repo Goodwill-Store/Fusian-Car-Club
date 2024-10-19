@@ -17,7 +17,7 @@ const Footer = () => {
                 pt: '3%',
             }}
         >
-            <Box sx={{ px: '3%' }}>
+            <Box sx={{ px: '3%', pb: '1%' }}>
                 <Grid container spacing={2}>
                     <Grid size={2}>
                         <List>
@@ -85,7 +85,8 @@ const Footer = () => {
                     alignItems: 'center',
                     marginTop: 1,
                     height: '100%',
-                    px: '3%'
+                    px: '3%',
+
                 }}
 
             >
