@@ -73,4 +73,3 @@ function LoginDialog({ open, onClose }) {
 }
 
 export default LoginDialog;
-
