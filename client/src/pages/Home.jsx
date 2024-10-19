@@ -1,24 +1,41 @@
 import React, { useState } from 'react';
 import Hero from '../components/Hero';
 import SignUpDialog from '../components/SignUpDialog';
+import LoginDialog from '../components/LoginDialog'; // Assuming you have this component
 
 function Home() {
-    const [open, setOpen] = useState(false);
+    // Separate states for SignUp and Login dialogs
+    const [isSignUpOpen, setIsSignUpOpen] = useState(false);
+    const [isLoginOpen, setIsLoginOpen] = useState(false);
 
-    const handleClickOpen = () => {
-        setOpen(true);
+    // Handlers for SignUp dialog
+    const handleSignUpOpen = () => {
+        setIsSignUpOpen(true);
     };
 
-    const handleClose = () => {
-        setOpen(false);
+    const handleSignUpClose = () => {
+        setIsSignUpOpen(false);
     };
+
+    // Handlers for Login dialog
+    const handleLoginOpen = () => {
+        setIsLoginOpen(true);
+    };
+
+    const handleLoginClose = () => {
+        setIsLoginOpen(false);
+    };
+
     return (
         <div>
-            {/* Pass the open handler to Hero */}
-            <Hero onGetStartedClick={handleClickOpen} />
+            {/* Pass both handlers to Hero for different buttons */}
+            <Hero onGetStartedClick={handleSignUpOpen} onLoginClick={handleLoginOpen} />
 
             {/* SignUp Dialog */}
-            <SignUpDialog open={open} onClose={handleClose} />
+            <SignUpDialog open={isSignUpOpen} onClose={handleSignUpClose} />
+
+            {/* Login Dialog */}
+            <LoginDialog open={isLoginOpen} onClose={handleLoginClose} />
         </div>
     );
 }

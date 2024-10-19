@@ -1,7 +1,9 @@
 import React from 'react';
 import { Box, Typography, Button } from '@mui/material';
 
-const Hero = ({ onGetStartedClick }) => {
+
+
+const Hero = ({ onGetStartedClick, onLoginClick }) => {
     return (
         <Box
             sx={{
@@ -32,6 +34,9 @@ const Hero = ({ onGetStartedClick }) => {
                 </Typography>
                 <Button variant="contained" color="primary" onClick={onGetStartedClick}>
                     Get Started
+                </Button>
+                <Button variant="contained" color="primary" onClick={onLoginClick}>
+                    Login
                 </Button>
             </Box>
         </Box>
