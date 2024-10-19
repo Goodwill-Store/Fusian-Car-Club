@@ -6,7 +6,7 @@ const Hero = ({ onGetStartedClick }) => {
         <Box
             sx={{
                 position: 'relative',
-                height: '90vh',
+                height: '53vh',
                 color: 'white',
                 display: 'flex',
                 alignItems: 'center',
