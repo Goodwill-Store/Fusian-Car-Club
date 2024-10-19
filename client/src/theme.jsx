@@ -6,10 +6,10 @@ import heroImage from './assets/hero.jpg'; // Import image
 const theme = createTheme({
     palette: {
         primary: {
-            main: '#1C1C3F', // Midnight Blue
+            main: '#3B3C3C', // Midnight Blue
         },
         secondary: {
-            main: '#2ED573', // Neon Green
+            main: '#EA1D25', // Neon Green
         },
         error: {
             main: '#FF6F20', // Flame Orange
@@ -20,6 +20,7 @@ const theme = createTheme({
         },
     },
     typography: {
+        fontFamily: 'Inter',
         h1: {
             fontSize: '2rem', // Customize heading sizes
             color: 'white'
