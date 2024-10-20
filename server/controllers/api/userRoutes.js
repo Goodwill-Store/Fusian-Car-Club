@@ -24,27 +24,28 @@ router.post('/signup', async (req, res) => {
 
   router.post('/login', async (req, res) => {
     try {
-        const userData = await User.findOne({ where: { username: req.body.username } });
+      console.log(req.body.username);
+        const userData = await User.findOne({ where: { user_name: req.body.username } });
         if (!userData) {
             res.status(404).json({ message: 'Incorrect Username. Please try again!' });
             return;
         }
         const validPassword = userData.checkPassword(req.body.password);
-
+        console.log(validPassword);
         if (!validPassword) {
             res.status(400).json({ message: 'Incorrect Password. Please try again!' });
             return;
         }
         req.session.save(() => {
-            req.session.user_id = userData.id;
-            req.session.logged_in = true;
-            console.log(req.sessionID);
-            res.send(req.sessionID);
+          req.session.user_id = userData.id;
+          req.session.logged_in = true;
+          console.log(req.sessionID);
+          res.json({ sessionID: req.sessionID });
 
-        });
+      });
     }
     catch (err) {
-        console.log('login error')
+        console.log(err)
         res.status(500).json(err);
     }
 });

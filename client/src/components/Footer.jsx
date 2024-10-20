@@ -58,7 +58,7 @@ const Footer = () => {
                             <ListItem sx={{ fontWeight: 'bold' }}>
                                 Subscribe to our newsletter
                             </ListItem>
-                            <ListItem variant="p" gutterBottom>
+                            <ListItem variant="p">
                                 The latest news, articles, and resources, sent to your inbox weekly.
                             </ListItem>
                             <ListItem>

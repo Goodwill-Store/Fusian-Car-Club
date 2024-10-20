@@ -3,13 +3,11 @@ import { Dialog, DialogActions, DialogContent, DialogTitle, TextField, Button } 
 
 function LoginDialog({ open, onClose }) {
     const [username, setUsername] = useState(''); // State for username
-    const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
 
     const handleLogin = async () => {
         const loginData = {
             username: username, // Send username instead of full name
-            email: email,
             password: password,
         };
 
@@ -73,4 +71,3 @@ function LoginDialog({ open, onClose }) {
 }
 
 export default LoginDialog;
-

@@ -9,6 +9,8 @@
     "client": "npm run dev --prefix client"
   },
   "dependencies": {
-    "bcrypt": "^5.1.1"
+    "bcrypt": "^5.1.1",
+    "connect-session-sequelize": "^7.1.7",
+    "express-session": "^1.18.1"
   }
 }
