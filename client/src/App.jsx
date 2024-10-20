@@ -3,6 +3,7 @@ import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import Home from './pages/Home';
 import Test from './pages/Test';
 import Checkapi from './pages/Checkapi';
+import Events from './pages/Events';
 import InstagramFeed from './pages/InstagramFeed';
 import ResponsiveAppBar from './components/ResponsiveAppBar';
 import Footer from './components/Footer';
@@ -22,6 +23,7 @@ function App() {
           <Route path="/" element={<Home />} />
           <Route path="/test" element={<Test />} />
           <Route path="/gallery" element={<InstagramFeed />} />
+          <Route path="/events" element={<Events />} />
           <Route path="/checkapi" element={<Checkapi />} />
         </Routes>
       </Router>
