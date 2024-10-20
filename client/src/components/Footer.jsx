@@ -22,35 +22,35 @@ const Footer = () => {
                     <Grid size={2}>
                         <List>
                             <ListItem sx={{ fontWeight: 'bold' }}>Solutions</ListItem>
-                            <ListItem sx={{ fontWeight: '300' }}>Marketing</ListItem>
-                            <ListItem sx={{ fontWeight: '300' }}>Analytics</ListItem>
-                            <ListItem sx={{ fontWeight: '300' }}>Commerce</ListItem>
-                            <ListItem sx={{ fontWeight: '300' }}>Insights</ListItem>
+                            <ListItem>Marketing</ListItem>
+                            <ListItem>Analytics</ListItem>
+                            <ListItem>Commerce</ListItem>
+                            <ListItem>Insights</ListItem>
                         </List>
                     </Grid>
                     <Grid size={2}>
                         <List>
                             <ListItem sx={{ fontWeight: 'bold' }}>Pricing</ListItem>
-                            <ListItem sx={{ fontWeight: '300' }}>Documentation</ListItem>
-                            <ListItem sx={{ fontWeight: '300' }}>Guides</ListItem>
-                            <ListItem sx={{ fontWeight: '300' }}>API Status</ListItem>
+                            <ListItem>Documentation</ListItem>
+                            <ListItem>Guides</ListItem>
+                            <ListItem>API Status</ListItem>
                         </List>
                     </Grid>
                     <Grid size={2}>
                         <List>
                             <ListItem sx={{ fontWeight: 'bold' }}>Company</ListItem>
-                            <ListItem sx={{ fontWeight: '300' }}>About</ListItem>
-                            <ListItem sx={{ fontWeight: '300' }}>Blog</ListItem>
-                            <ListItem sx={{ fontWeight: '300' }}>Jobs</ListItem>
-                            <ListItem sx={{ fontWeight: '300' }}>Press</ListItem>
-                            <ListItem sx={{ fontWeight: '300' }}>Partners</ListItem>
+                            <ListItem>About</ListItem>
+                            <ListItem>Blog</ListItem>
+                            <ListItem>Jobs</ListItem>
+                            <ListItem>Press</ListItem>
+                            <ListItem>Partners</ListItem>
                         </List>
                     </Grid>
                     <Grid size={2}>
                         <List>
                             <ListItem sx={{ fontWeight: 'bold' }}>Legal</ListItem>
-                            <ListItem sx={{ fontWeight: '300' }}>Privacy</ListItem>
-                            <ListItem sx={{ fontWeight: '300' }}>Terms</ListItem>
+                            <ListItem>Privacy</ListItem>
+                            <ListItem>Terms</ListItem>
                         </List>
                     </Grid>
                     <Grid size={4}>
