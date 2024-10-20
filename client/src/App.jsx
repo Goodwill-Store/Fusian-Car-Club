@@ -2,9 +2,9 @@ import './App.css'
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import Home from './pages/Home';
 import Test from './pages/Test';
-import Checkapi from './pages/Checkapi';
+import Merch from './pages/Merch';
 import Events from './pages/Events';
-import InstagramFeed from './pages/InstagramFeed';
+import Gallery from './pages/Gallery';
 import ResponsiveAppBar from './components/ResponsiveAppBar';
 import Footer from './components/Footer';
 import { ThemeProvider } from '@mui/material/styles';
@@ -22,9 +22,9 @@ function App() {
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/test" element={<Test />} />
-          <Route path="/gallery" element={<InstagramFeed />} />
+          <Route path="/Gallery" element={<Gallery />} />
           <Route path="/events" element={<Events />} />
-          <Route path="/checkapi" element={<Checkapi />} />
+          <Route path="/Merch" element={<Merch />} />
         </Routes>
       </Router>
       <Footer />
