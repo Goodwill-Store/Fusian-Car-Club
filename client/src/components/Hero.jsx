@@ -1,13 +1,12 @@
 import React from 'react';
 import { Box, Typography, Button } from '@mui/material';
-import InstagramFeed from '../components/InstagramFeed';
 
 const Hero = ({ onGetStartedClick, onLoginClick }) => {
     return (
         <Box
             sx={{
                 position: 'relative',
-                // height: '53vh',
+                height: '53vh',
                 color: 'white',
                 display: 'flex',
                 alignItems: 'center',
@@ -38,8 +37,6 @@ const Hero = ({ onGetStartedClick, onLoginClick }) => {
                     Login
                 </Button>
 
-                {/* Instagram Feed component below */}
-                <InstagramFeed />
             </Box>
 
         </Box>
