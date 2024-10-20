@@ -13,7 +13,7 @@ import logo from '../assets/logo.webp';
 const pages = [
     { label: 'Home', url: '/' },
     { label: 'Merch', url: '/Merch' },
-    { label: 'Events', url: '/test' },
+    { label: 'Events', url: '/events' },
     { label: 'Gallery', url: '/Gallery' },
     { label: 'Blog', url: '/' },
 ];
