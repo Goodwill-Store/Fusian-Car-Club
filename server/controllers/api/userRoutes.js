@@ -25,31 +25,37 @@ router.post('/signup', async (req, res) => {
 router.post('/login', async (req, res) => {
   try {
     console.log(req.body.username);
-    const userData = await User.findOne({ where: { user_name: req.body.username } });
-    if (!userData) {
-      res.status(404).json({ message: 'Incorrect Username. Please try again!' });
-      return;
-    }
-    const validPassword = userData.checkPassword(req.body.password);
-    console.log(validPassword);
-    if (!validPassword) {
-      res.status(400).json({ message: 'Incorrect Password. Please try again!' });
-      return;
-    }
-    req.session.save(() => {
-      req.session.user_id = userData.id;
-      req.session.logged_in = true;
-      req.session.username = userData.user_name;
-      console.log(req.sessionID);
-      res.json({ sessionID: req.sessionID });
 
-    });
-  }
-  catch (err) {
-    console.log(err)
+    // Get username and password from the request
+    const userData = await User.findOne({ where: { user_name: req.body.username } });
+
+    // Check if userData exists before checking the password
+    if (!userData) {
+      return res.status(400).json({ message: 'Incorrect username or password. Please try again!' });
+    }
+
+    const validPassword = await userData.checkPassword(req.body.password);  // Assuming checkPassword is async
+
+    if (validPassword) {
+      // Save session and return success response
+      req.session.save(() => {
+        req.session.user_id = userData.id;
+        req.session.logged_in = true;
+        req.session.username = userData.user_name;
+        console.log(req.sessionID);
+        res.json({ sessionID: req.sessionID });
+      });
+    } else {
+      // Incorrect password
+      res.status(400).json({ message: 'Incorrect username or password. Please try again!' });
+    }
+
+  } catch (err) {
+    console.log(err);
     res.status(500).json(err);
   }
 });
+
 
 router.get('/session', (req, res) => {
   console.log('/session');

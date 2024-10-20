@@ -13,6 +13,8 @@
 
 [TO DO Board](https://github.com/orgs/Goodwill-Store/projects/1)
 
+[Figma](https://www.figma.com/design/Kbnfp7GrdoQPHNaIvLMSCw/WireBoard?node-id=0-1&node-type=canvas&t=B6riAA4FD556z4Fl-0)
+
 
 ## How to Run the App Locally
 
