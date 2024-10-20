@@ -1,7 +1,4 @@
-import React from 'react';
-import { Box, Button, IconButton, List, ListItem, Divider, Typography } from '@mui/material';
-import TextField from '@mui/material/TextField';
-import Grid from '@mui/material/Grid2';
+import { Box, Grid, List, ListItem, Link, TextField, Button, Typography, IconButton, Divider } from '@mui/material';
 import GitHubIcon from '@mui/icons-material/GitHub';
 import InstagramIcon from '@mui/icons-material/Instagram';
 import FacebookIcon from '@mui/icons-material/Facebook';
@@ -15,20 +12,21 @@ const Footer = () => {
                 bgcolor: 'primary.main',
                 color: 'white',
                 pt: '3%',
+                pb: '1%',
             }}
         >
-            <Box sx={{ px: '3%', pb: '1%' }}>
+            <Box sx={{ px: { xs: '5%', sm: '3%' }, pb: '2%' }}>
                 <Grid container spacing={2}>
-                    <Grid size={2}>
+                    <Grid item xs={12} sm={6} md={2}>
                         <List>
                             <ListItem sx={{ fontWeight: 'bold' }}>Solutions</ListItem>
-                            <ListItem>Marketing</ListItem>
+                            <ListItem><Link href="https://example.com/marketing">Marketing</Link></ListItem>
                             <ListItem>Analytics</ListItem>
                             <ListItem>Commerce</ListItem>
                             <ListItem>Insights</ListItem>
                         </List>
                     </Grid>
-                    <Grid size={2}>
+                    <Grid item xs={12} sm={6} md={2}>
                         <List>
                             <ListItem sx={{ fontWeight: 'bold' }}>Pricing</ListItem>
                             <ListItem>Documentation</ListItem>
@@ -36,7 +34,7 @@ const Footer = () => {
                             <ListItem>API Status</ListItem>
                         </List>
                     </Grid>
-                    <Grid size={2}>
+                    <Grid item xs={12} sm={6} md={2}>
                         <List>
                             <ListItem sx={{ fontWeight: 'bold' }}>Company</ListItem>
                             <ListItem>About</ListItem>
@@ -46,28 +44,31 @@ const Footer = () => {
                             <ListItem>Partners</ListItem>
                         </List>
                     </Grid>
-                    <Grid size={2}>
+                    <Grid item xs={12} sm={6} md={2}>
                         <List>
                             <ListItem sx={{ fontWeight: 'bold' }}>Legal</ListItem>
                             <ListItem>Privacy</ListItem>
                             <ListItem>Terms</ListItem>
                         </List>
                     </Grid>
-                    <Grid size={4}>
+                    <Grid item xs={12} sm={12} md={4}>
                         <List>
-                            <ListItem sx={{ fontWeight: 'bold' }}>
-                                Subscribe to our newsletter
-                            </ListItem>
+                            <ListItem sx={{ fontWeight: 'bold' }}>Subscribe to our newsletter</ListItem>
                             <ListItem variant="p">
                                 The latest news, articles, and resources, sent to your inbox weekly.
                             </ListItem>
                             <ListItem>
                                 <Grid container spacing={1} alignItems="center">
                                     <Grid item xs={8}>
-                                        <TextField id="outlined-basic" label="Enter your email" variant="filled" fullWidth />
+                                        <TextField
+                                            id="outlined-basic"
+                                            label="Enter your email"
+                                            variant="filled"
+                                            fullWidth
+                                        />
                                     </Grid>
                                     <Grid item xs={4}>
-                                        <Button variant="contained" color="secondary" sx={{ height: '56px' }}> {/* Adjust this height */}
+                                        <Button variant="contained" color="secondary" sx={{ height: '56px' }}>
                                             Subscribe
                                         </Button>
                                     </Grid>
@@ -77,54 +78,35 @@ const Footer = () => {
                     </Grid>
                 </Grid>
             </Box>
+
             <Divider sx={{ width: '100%', marginBottom: 1, backgroundColor: 'white' }} />
+
             <Box
                 sx={{
                     display: 'flex',
+                    flexDirection: { xs: 'column', sm: 'row' }, // Stack vertically on small screens, horizontally on large
                     justifyContent: 'space-between',
                     alignItems: 'center',
-                    marginTop: 1,
-                    height: '100%',
-                    px: '3%',
-
+                    px: { xs: '5%', sm: '3%' },
                 }}
-
             >
-                <Box sx={{ display: 'flex' }}>
-                    <Typography variant="body2" sx={{ marginTop: 1 }}>
-                        &copy; {currentYear} Fusian Car Club. All rights reserved.
-                    </Typography>
-                </Box>
+                <Typography variant="body2" sx={{ marginTop: { xs: 2, sm: 0 } }}>
+                    &copy; {currentYear} Fusian Car Club. All rights reserved.
+                </Typography>
 
-                <Box sx={{ display: 'flex' }}>
-                    <IconButton
-                        color="inherit"
-                        href="https://github.com"
-                        target="_blank"
-                        rel="noopener noreferrer"
-                    >
+                <Box sx={{ display: 'flex', mt: { xs: 2, sm: 0 } }}>
+                    <IconButton color="inherit" href="https://github.com" target="_blank" rel="noopener noreferrer">
                         <GitHubIcon />
                     </IconButton>
-                    <IconButton
-                        color="inherit"
-                        href="https://instagram.com"
-                        target="_blank"
-                        rel="noopener noreferrer"
-                    >
+                    <IconButton color="inherit" href="https://instagram.com" target="_blank" rel="noopener noreferrer">
                         <InstagramIcon />
                     </IconButton>
-                    <IconButton
-                        color="inherit"
-                        href="https://facebook.com"
-                        target="_blank"
-                        rel="noopener noreferrer"
-                    >
+                    <IconButton color="inherit" href="https://facebook.com" target="_blank" rel="noopener noreferrer">
                         <FacebookIcon />
                     </IconButton>
                 </Box>
             </Box>
-
-        </Box >
+        </Box>
     );
 };
 

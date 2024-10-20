@@ -6,7 +6,10 @@ import heroImage from './assets/hero.jpg'; // Import image
 const theme = createTheme({
     palette: {
         primary: {
-            main: '#3B3C3C', // Midnight Blue
+            main: '#3B3C3C', // Midnight Blue,
+            text: {
+                primary: '#ffffff', // Set default text color to white
+            },
         },
         secondary: {
             main: '#EA1D25', // Neon Green
@@ -59,6 +62,13 @@ const theme = createTheme({
                 },
             },
         },
+        MuiLink: {
+            styleOverrides: {
+                root: {
+                    color: '#ffffff', // Make links white by default
+                },
+            },
+        }
     },
 });
 

@@ -3,58 +3,73 @@ const { User } = require('../../models');
 
 //create user
 router.post('/signup', async (req, res) => {
-    try {
-      const userData = await User.create({
-        user_name: req.body.username,
-        email: req.body.email,
-        password: req.body.password,
-      });
-      req.session.save(() => {
-        console.log(userData);
-        //added this to get user ID saved to session///ANA
-        req.session.user_id = userData.id;
-        req.session.logged_in = true;
-        res.status(200).json(userData);
-      });
-    } catch (err) {
-        console.log(req.body);
-      res.status(400).json(err);
-    }
-  });
-
-  router.post('/login', async (req, res) => {
-    try {
-      console.log(req.body.username);
-        const userData = await User.findOne({ where: { user_name: req.body.username } });
-        if (!userData) {
-            res.status(404).json({ message: 'Incorrect Username. Please try again!' });
-            return;
-        }
-        const validPassword = userData.checkPassword(req.body.password);
-        console.log(validPassword);
-        if (!validPassword) {
-            res.status(400).json({ message: 'Incorrect Password. Please try again!' });
-            return;
-        }
-        req.session.save(() => {
-          req.session.user_id = userData.id;
-          req.session.logged_in = true;
-          console.log(req.sessionID);
-          res.json({ sessionID: req.sessionID });
-
-      });
-    }
-    catch (err) {
-        console.log(err)
-        res.status(500).json(err);
-    }
+  try {
+    const userData = await User.create({
+      user_name: req.body.username,
+      email: req.body.email,
+      password: req.body.password,
+    });
+    req.session.save(() => {
+      console.log(userData);
+      //added this to get user ID saved to session///ANA
+      req.session.user_id = userData.id;
+      req.session.logged_in = true;
+      res.status(200).json(userData);
+    });
+  } catch (err) {
+    console.log(req.body);
+    res.status(400).json(err);
+  }
 });
 
-  router.get('/', (req, res) => {
-    console.log("Test user route")
-    res.json([
-        { test: 'it hits the route though' },
-      ]);
-  });
+router.post('/login', async (req, res) => {
+  try {
+    console.log(req.body.username);
+    const userData = await User.findOne({ where: { user_name: req.body.username } });
+    if (!userData) {
+      res.status(404).json({ message: 'Incorrect Username. Please try again!' });
+      return;
+    }
+    const validPassword = userData.checkPassword(req.body.password);
+    console.log(validPassword);
+    if (!validPassword) {
+      res.status(400).json({ message: 'Incorrect Password. Please try again!' });
+      return;
+    }
+    req.session.save(() => {
+      req.session.user_id = userData.id;
+      req.session.logged_in = true;
+      req.session.username = userData.user_name;
+      console.log(req.sessionID);
+      res.json({ sessionID: req.sessionID });
 
-  module.exports = router;
+    });
+  }
+  catch (err) {
+    console.log(err)
+    res.status(500).json(err);
+  }
+});
+
+router.get('/session', (req, res) => {
+  console.log('/session');
+  if (req.session.logged_in) {
+    // Return relevant session details
+    console.log(req.session.username);
+    res.json({
+      username: req.session.username,
+      logged_in: req.session.logged_in,
+    });
+  } else {
+    res.json({ logged_in: false });
+  }
+});
+
+router.get('/', (req, res) => {
+  console.log("Test user route")
+  res.json([
+    { test: 'it hits the route though' },
+  ]);
+});
+
+module.exports = router;

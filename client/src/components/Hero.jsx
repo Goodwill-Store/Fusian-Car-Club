@@ -1,8 +1,6 @@
 import React from 'react';
 import { Box, Typography, Button } from '@mui/material';
 
-
-
 const Hero = ({ onGetStartedClick, onLoginClick }) => {
     return (
         <Box

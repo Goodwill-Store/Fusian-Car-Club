@@ -2,10 +2,8 @@ import * as React from 'react';
 import AppBar from '@mui/material/AppBar';
 import Box from '@mui/material/Box';
 import Toolbar from '@mui/material/Toolbar';
-import IconButton from '@mui/material/IconButton';
 import Typography from '@mui/material/Typography';
 import Menu from '@mui/material/Menu';
-import MenuIcon from '@mui/icons-material/Menu';
 import Container from '@mui/material/Container';
 import Button from '@mui/material/Button';
 import MenuItem from '@mui/material/MenuItem';
@@ -20,25 +18,42 @@ const pages = [
     { label: 'Blog', url: '/' },
 ];
 
-const settings = ['Profile', 'Account', 'Dashboard', 'Logout'];
-
 function ResponsiveAppBar() {
     const [anchorElNav, setAnchorElNav] = React.useState(null);
-    const [anchorElUser, setAnchorElUser] = React.useState(null);
+    const [isAuthenticated, setIsAuthenticated] = React.useState(false);
+    const [username, setUsername] = React.useState('');
+
+    // Fetch session details on component mount
+    React.useEffect(() => {
+        const fetchSessionDetails = async () => {
+            try {
+                console.log('/fetchSessionDetails');
+                const response = await fetch('api/user/session', {
+                    method: 'GET',
+                    credentials: 'include', // Include cookies for session
+                });
+                const data = await response.json();
+
+                if (data.logged_in) {
+                    setIsAuthenticated(true);
+                    setUsername(data.username);
+                } else {
+                    setIsAuthenticated(false);
+                }
+            } catch (error) {
+                console.error('Error fetching session details:', error);
+            }
+        };
+
+        fetchSessionDetails();
+    }, []);
 
     const handleOpenNavMenu = (event) => {
         setAnchorElNav(event.currentTarget);
     };
-    const handleOpenUserMenu = (event) => {
-        setAnchorElUser(event.currentTarget);
-    };
 
     const handleCloseNavMenu = () => {
         setAnchorElNav(null);
-    };
-
-    const handleCloseUserMenu = () => {
-        setAnchorElUser(null);
     };
 
     return (
@@ -46,47 +61,12 @@ function ResponsiveAppBar() {
             <Container maxWidth="xl">
                 <Toolbar disableGutters>
                     <img
-                        src={logo} // Use the imported logo
+                        src={logo}
                         alt="Custom Logo"
                         style={{ width: '85px', height: '85px' }}
                     />
 
-                    <Box sx={{ flexGrow: 1, display: { xs: 'flex', md: 'none' } }}>
-                        <IconButton
-                            size="large"
-                            aria-label="account of current user"
-                            aria-controls="menu-appbar"
-                            aria-haspopup="true"
-                            onClick={handleOpenNavMenu}
-                            color="inherit"
-                        >
-                            <MenuIcon />
-                        </IconButton>
-                        <Menu
-                            id="menu-appbar"
-                            anchorEl={anchorElNav}
-                            anchorOrigin={{
-                                vertical: 'bottom',
-                                horizontal: 'left',
-                            }}
-                            keepMounted
-                            transformOrigin={{
-                                vertical: 'top',
-                                horizontal: 'left',
-                            }}
-                            open={Boolean(anchorElNav)}
-                            onClose={handleCloseNavMenu}
-                            sx={{ display: { xs: 'block', md: 'none' } }}
-                        >
-                            {pages.map((item) => (
-                                <MenuItem key={item.label} onClick={handleCloseNavMenu}>
-                                    <Typography href={item.url} sx={{ textAlign: 'center' }}>{item.label}</Typography>
-                                </MenuItem>
-                            ))}
-                        </Menu>
-                    </Box>
-                    <AdbIcon sx={{ display: { xs: 'flex', md: 'none' }, mr: 1 }} />
-
+                    {/* Left part: Links */}
                     <Box sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex' } }}>
                         {pages.map((item) => (
                             <Button
@@ -99,9 +79,27 @@ function ResponsiveAppBar() {
                             </Button>
                         ))}
                     </Box>
+
+                    {/* Right part: Hello Username or Login button */}
+                    <Box sx={{ flexGrow: 0 }}>
+                        {isAuthenticated ? (
+                            <Typography variant="body1" sx={{ color: 'white', mr: 2 }}>
+                                Hello, {username} !
+                            </Typography>
+                        ) : (
+                            <Button
+                                color="inherit"
+                                href="/login"  // Change this to your actual login route
+                                sx={{ color: 'white' }}
+                            >
+                                Login
+                            </Button>
+                        )}
+                    </Box>
                 </Toolbar>
             </Container>
         </AppBar>
     );
 }
+
 export default ResponsiveAppBar;
