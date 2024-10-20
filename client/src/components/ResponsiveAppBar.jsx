@@ -12,9 +12,9 @@ import logo from '../assets/logo.webp';
 
 const pages = [
     { label: 'Home', url: '/' },
-    { label: 'Merch', url: '/checkapi' },
+    { label: 'Merch', url: '/Merch' },
     { label: 'Events', url: '/test' },
-    { label: 'Gallery', url: '/gallery' },
+    { label: 'Gallery', url: '/Gallery' },
     { label: 'Blog', url: '/' },
 ];
 

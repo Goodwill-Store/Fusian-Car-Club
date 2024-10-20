@@ -2,7 +2,7 @@ import React from 'react';
 import { InstagramEmbed } from 'react-social-media-embed';
 import { Box } from '@mui/material';
 
-const InstagramFeed = ({ urls }) => {
+const Gallery = ({ urls }) => {
     return (
         <Box sx={{ display: 'flex', justifyContent: 'center', gap: 2, mt: 2, flexWrap: 'wrap' }}>
             <InstagramEmbed url="https://www.instagram.com/p/C9s65VVzyrw/" width={328} />
@@ -12,4 +12,4 @@ const InstagramFeed = ({ urls }) => {
     );
 };
 
-export default InstagramFeed;
+export default Gallery;
