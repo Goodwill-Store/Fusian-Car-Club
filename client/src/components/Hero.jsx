@@ -1,12 +1,13 @@
 import React from 'react';
 import { Box, Typography, Button } from '@mui/material';
+import InstagramFeed from '../components/InstagramFeed';
 
 const Hero = ({ onGetStartedClick, onLoginClick }) => {
     return (
         <Box
             sx={{
                 position: 'relative',
-                height: '53vh',
+                // height: '53vh',
                 color: 'white',
                 display: 'flex',
                 alignItems: 'center',
@@ -23,7 +24,7 @@ const Hero = ({ onGetStartedClick, onLoginClick }) => {
                 },
             }}
         >
-            <Box sx={{ position: 'relative', zIndex: 1 }}>
+            <Box sx={{ position: 'relative', zIndex: 1, display: 'flex', flexDirection: 'column', alignItems: 'center', gap: 2 }}>
                 <Typography variant="h2" gutterBottom>
                     Welcome Fusian Car Club
                 </Typography>
@@ -36,7 +37,11 @@ const Hero = ({ onGetStartedClick, onLoginClick }) => {
                 <Button variant="contained" color="primary" onClick={onLoginClick}>
                     Login
                 </Button>
+
+                {/* Instagram Feed component below */}
+                <InstagramFeed />
             </Box>
+
         </Box>
     );
 };
