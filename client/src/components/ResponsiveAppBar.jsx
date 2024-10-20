@@ -14,7 +14,7 @@ const pages = [
     { label: 'Home', url: '/' },
     { label: 'Merch', url: '/checkapi' },
     { label: 'Events', url: '/test' },
-    { label: 'Gallery', url: '/' },
+    { label: 'Gallery', url: '/gallery' },
     { label: 'Blog', url: '/' },
 ];
 
