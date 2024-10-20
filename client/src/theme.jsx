@@ -6,16 +6,16 @@ import heroImage from './assets/enha.jpg'; // Import image
 const theme = createTheme({
     palette: {
         primary: {
-            main: '#3B3C3C', // Midnight Blue,
+            main: '#3B3C3C',
             text: {
-                primary: '#ffffff', // Set default text color to white
+                primary: '#ffffff',
             },
         },
         secondary: {
-            main: '#EA1D25', // Neon Green
+            main: '#EA1D25',
         },
         error: {
-            main: '#FF6F20', // Flame Orange
+            main: '#EA1D25',
         },
         background: {
             default: '#FFFFFF', // Default background color
