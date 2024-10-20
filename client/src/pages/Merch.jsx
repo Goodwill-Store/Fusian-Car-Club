@@ -59,15 +59,23 @@ function Merch() {
       <Grid container spacing={3}>
         {items.map((item) => (
           <Grid item xs={12} sm={6} md={3} key={item.id}>
-            <Card sx={{ maxWidth: 345 }}>
+            <Card
+              sx={{
+                display: 'flex',
+                flexDirection: 'column',
+                justifyContent: 'space-between', // Ensure the button is pushed to the bottom
+                maxWidth: 345,
+                height: '100%', // Make all cards the same height
+              }}
+            >
               <CardMedia
                 component="img"
-                height="400"
+                height="300"
                 image={item.img}
                 alt={item.name}
                 sx={{ objectFit: 'cover' }}
               />
-              <CardContent>
+              <CardContent sx={{ flexGrow: 1 }}>
                 <Typography variant="h6" component="div">
                   {item.name}
                 </Typography>
