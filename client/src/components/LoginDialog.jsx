@@ -1,13 +1,14 @@
 import React, { useState } from 'react';
-import { Dialog, DialogActions, DialogContent, DialogTitle, TextField, Button } from '@mui/material';
+import { Dialog, DialogActions, DialogContent, DialogTitle, TextField, Button, Typography } from '@mui/material';
 
 function LoginDialog({ open, onClose }) {
-    const [username, setUsername] = useState(''); // State for username
+    const [username, setUsername] = useState('');
     const [password, setPassword] = useState('');
+    const [errorMessage, setErrorMessage] = useState(''); // State for error message
 
     const handleLogin = async () => {
         const loginData = {
-            username: username, // Send username instead of full name
+            username: username,
             password: password,
         };
 
@@ -21,33 +22,40 @@ function LoginDialog({ open, onClose }) {
             });
 
             if (!response.ok) {
-                throw new Error('Network response was not ok');
+                const errorData = await response.json(); // Extract the error message from the response
+                setErrorMessage(errorData.message || 'Login failed. Please try again.');
+                return; // Exit on error
             }
 
             const data = await response.json();
             console.log('Success:', data);
+            setErrorMessage(''); // Clear any previous error messages
             onClose(); // Close the dialog on success
         } catch (error) {
-            console.error('Error during sign up:', error);
-            // Optionally handle error (e.g., show a notification)
+            console.error('Error during login:', error);
+            setErrorMessage('An unexpected error occurred. Please try again.'); // General error message
         }
     };
 
     return (
         <Dialog open={open} onClose={onClose}>
-            <DialogTitle>Sign Up</DialogTitle>
+            <DialogTitle>Login</DialogTitle>
             <DialogContent>
+                {errorMessage && (
+                    <Typography color="error" variant="body2" gutterBottom>
+                        {errorMessage}
+                    </Typography>
+                )}
                 <TextField
                     autoFocus
                     margin="dense"
-                    label="Username" // Change to Username
+                    label="Username"
                     type="text"
                     fullWidth
                     variant="outlined"
                     value={username}
-                    onChange={(e) => setUsername(e.target.value)} // Update username state
+                    onChange={(e) => setUsername(e.target.value)}
                 />
-                {/*  */}
                 <TextField
                     margin="dense"
                     label="Password"
