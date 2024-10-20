@@ -4,23 +4,48 @@ const { User } = require('../../models');
 //create user
 router.post('/signup', async (req, res) => {
   try {
+    console.log("signup");
+
+    const existingUser = await User.findOne({
+      where: {
+        user_name: req.body.username,
+      },
+    });
+
+    if (existingUser) {
+      console.log('Username already exists');
+      return res.status(400).json({ message: 'Username already exists.' });
+    }
+    // Check for existing email
+    const existingEmail = await User.findOne({
+      where: {
+        email: req.body.email,
+      },
+    });
+
+    if (existingEmail) {
+      console.log('Email already exists');
+      return res.status(400).json({ message: 'Email already exists.' });
+    }
     const userData = await User.create({
       user_name: req.body.username,
       email: req.body.email,
-      password: req.body.password,
+      password: req.body.password, // Don't hash right now
     });
+
     req.session.save(() => {
-      console.log(userData);
-      //added this to get user ID saved to session///ANA
       req.session.user_id = userData.id;
       req.session.logged_in = true;
       res.status(200).json(userData);
     });
   } catch (err) {
-    console.log(req.body);
-    res.status(400).json(err);
+    console.error('Signup error:', err); // Log the error details
+    console.log(req.body); // Log the request body for additional context
+    res.status(400).json({ message: 'Signup failed. Please try again.', error: err.message });
   }
 });
+
+
 
 router.post('/login', async (req, res) => {
   try {

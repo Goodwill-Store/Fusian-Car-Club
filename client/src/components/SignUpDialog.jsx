@@ -1,14 +1,15 @@
 import React, { useState } from 'react';
-import { Dialog, DialogActions, DialogContent, DialogTitle, TextField, Button } from '@mui/material';
+import { Dialog, DialogActions, DialogContent, DialogTitle, TextField, Button, Typography } from '@mui/material';
 
 function SignUpDialog({ open, onClose }) {
-    const [username, setUsername] = useState(''); // State for username
+    const [username, setUsername] = useState('');
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
+    const [errorMessage, setErrorMessage] = useState(''); // State for error message
 
     const handleSignUp = async () => {
         const signUpData = {
-            username: username, // Send username instead of full name
+            username: username,
             email: email,
             password: password,
         };
@@ -23,7 +24,8 @@ function SignUpDialog({ open, onClose }) {
             });
 
             if (!response.ok) {
-                throw new Error('Network response was not ok');
+                const errorData = await response.json(); // Get error data from response
+                throw new Error(errorData.message || 'Network response was not ok');
             }
 
             const data = await response.json();
@@ -31,7 +33,7 @@ function SignUpDialog({ open, onClose }) {
             onClose(); // Close the dialog on success
         } catch (error) {
             console.error('Error during sign up:', error);
-            // Optionally handle error (e.g., show a notification)
+            setErrorMessage(error.message); // Set the error message to display
         }
     };
 
@@ -42,12 +44,12 @@ function SignUpDialog({ open, onClose }) {
                 <TextField
                     autoFocus
                     margin="dense"
-                    label="Username" // Change to Username
+                    label="Username"
                     type="text"
                     fullWidth
                     variant="outlined"
                     value={username}
-                    onChange={(e) => setUsername(e.target.value)} // Update username state
+                    onChange={(e) => setUsername(e.target.value)}
                 />
                 <TextField
                     margin="dense"
@@ -67,6 +69,11 @@ function SignUpDialog({ open, onClose }) {
                     value={password}
                     onChange={(e) => setPassword(e.target.value)}
                 />
+                {errorMessage && ( // Display error message if it exists
+                    <Typography color="error" variant="body2" sx={{ mt: 2 }}>
+                        {errorMessage}
+                    </Typography>
+                )}
             </DialogContent>
             <DialogActions>
                 <Button onClick={onClose} color="secondary">
