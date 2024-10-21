@@ -68,7 +68,7 @@ const theme = createTheme({
                     color: '#ffffff', // Make links white by default
                 },
             },
-        }
+        },
     },
 });
 
