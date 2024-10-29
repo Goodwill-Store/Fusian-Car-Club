@@ -96,6 +96,20 @@ router.get('/session', (req, res) => {
   }
 });
 
+// logout
+router.post('/logout', (req, res) => {
+  if (req.session.logged_in) {
+    req.session.destroy((err) => {
+      if (err) {
+        return res.status(500).json({ message: 'Failed to logout. Please try again.' });
+      }
+      res.status(200).json({ message: 'Successfully logged out.' });
+    });
+  } else {
+    res.status(400).json({ message: 'No user is logged in.' });
+  }
+});
+
 router.get('/', (req, res) => {
   console.log("Test user route")
   res.json([

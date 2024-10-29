@@ -12,7 +12,7 @@ import Tooltip from '@mui/material/Tooltip';
 import MenuItem from '@mui/material/MenuItem';
 import logo from '../assets/logo.webp';
 import LoginDialog from './LoginDialog';
-import SignUpDialog from './SignUpDialog'
+import SignUpDialog from './SignUpDialog';
 
 // The page redirects
 const pages = [
@@ -68,6 +68,24 @@ function ResponsiveAppBar() {
         handleLoginClose();
     };
 
+    const handleLogout = async () => {
+        try {
+            const response = await fetch('/api/user/logout', {
+                method: 'POST',
+                credentials: 'include',
+            });
+            if (response.ok) {
+                setIsAuthenticated(false);
+                setUsername('');
+                handleCloseUserMenu();
+            } else {
+                console.error('Logout failed');
+            }
+        } catch (error) {
+            console.error('Error logging out:', error);
+        }
+    };
+
     return (
         <AppBar position="static">
             <Container maxWidth="xl" sx={{ width: '60%' }}>
@@ -114,7 +132,15 @@ function ResponsiveAppBar() {
                                 onClose={handleCloseUserMenu}
                             >
                                 {settings.map((setting) => (
-                                    <MenuItem key={setting} onClick={handleCloseUserMenu}>
+                                    <MenuItem
+                                        key={setting}
+                                        onClick={() => {
+                                            handleCloseUserMenu();
+                                            if (setting === 'Logout') {
+                                                handleLogout();
+                                            }
+                                        }}
+                                    >
                                         <Typography sx={{ textAlign: 'center', color: 'black' }}>{setting}</Typography>
                                     </MenuItem>
                                 ))}
