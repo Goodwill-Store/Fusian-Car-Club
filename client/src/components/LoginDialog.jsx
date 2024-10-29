@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { Dialog, DialogActions, DialogContent, DialogTitle, TextField, Button, Typography } from '@mui/material';
 
-function LoginDialog({ open, onClose, onSignupOpen }) {
+function LoginDialog({ open, onClose, onSignupOpen, onLoginSuccess }) {
     const [username, setUsername] = useState('');
     const [password, setPassword] = useState('');
     const [errorMessage, setErrorMessage] = useState('');
@@ -19,7 +19,9 @@ function LoginDialog({ open, onClose, onSignupOpen }) {
                 setErrorMessage(errorData.message || 'Login failed. Please try again.');
                 return;
             }
-            onClose();
+
+            // Call onLoginSuccess with username to update authentication in parent
+            onLoginSuccess(username);
         } catch (error) {
             setErrorMessage('An unexpected error occurred. Please try again.');
         }
@@ -29,7 +31,11 @@ function LoginDialog({ open, onClose, onSignupOpen }) {
         <Dialog open={open} onClose={onClose}>
             <DialogTitle>Login</DialogTitle>
             <DialogContent>
-                {errorMessage && <Typography color="error" variant="body2" gutterBottom>{errorMessage}</Typography>}
+                {errorMessage && (
+                    <Typography color="error" variant="body2" gutterBottom>
+                        {errorMessage}
+                    </Typography>
+                )}
                 <TextField
                     autoFocus
                     margin="dense"

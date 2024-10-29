@@ -1,21 +1,18 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import AppBar from '@mui/material/AppBar';
 import Box from '@mui/material/Box';
 import Toolbar from '@mui/material/Toolbar';
 import IconButton from '@mui/material/IconButton';
 import Typography from '@mui/material/Typography';
 import Menu from '@mui/material/Menu';
-import MenuIcon from '@mui/icons-material/Menu';
 import Container from '@mui/material/Container';
 import Avatar from '@mui/material/Avatar';
 import Button from '@mui/material/Button';
 import Tooltip from '@mui/material/Tooltip';
 import MenuItem from '@mui/material/MenuItem';
-import AdbIcon from '@mui/icons-material/Adb';
 import logo from '../assets/logo.webp';
 import LoginDialog from './LoginDialog';
 import SignUpDialog from './SignUpDialog'
-
 
 // The page redirects
 const pages = [
@@ -28,43 +25,22 @@ const pages = [
 const settings = ['Profile', 'Account', 'Dashboard', 'Logout'];
 
 function ResponsiveAppBar() {
-    const [isAuthenticated, setIsAuthenticated] = React.useState(false);
-    const [username, setUsername] = React.useState('');
-
-    const [anchorElNav, setAnchorElNav] = React.useState(null);
-    const [anchorElUser, setAnchorElUser] = React.useState(null);
-
-    const handleOpenUserMenu = (event) => {
-        setAnchorElUser(event.currentTarget);
-    };
-
-    const handleCloseNavMenu = () => {
-        setAnchorElNav(null);
-    };
-
-    const handleCloseUserMenu = () => {
-        setAnchorElUser(null);
-    };
-
-    const handleLoginOpen = () => {
-        setIsLoginOpen(true);
-    };
-
-    const handleLoginClose = () => {
-        setIsLoginOpen(false);
-    };
-    const handleSignUpOpen = () => {
-        setIsSignUpOpen(true);
-    };
-
-    const handleSignUpClose = () => {
-        setIsSignUpOpen(false);
-    };
+    const [isAuthenticated, setIsAuthenticated] = useState(false);
+    const [username, setUsername] = useState('');
+    const [anchorElNav, setAnchorElNav] = useState(null);
+    const [anchorElUser, setAnchorElUser] = useState(null);
     const [isLoginOpen, setIsLoginOpen] = useState(false);
     const [isSignUpOpen, setIsSignUpOpen] = useState(false);
 
-    // Fetch session details on component mount
-    React.useEffect(() => {
+    const handleOpenUserMenu = (event) => setAnchorElUser(event.currentTarget);
+    const handleCloseNavMenu = () => setAnchorElNav(null);
+    const handleCloseUserMenu = () => setAnchorElUser(null);
+    const handleLoginOpen = () => setIsLoginOpen(true);
+    const handleLoginClose = () => setIsLoginOpen(false);
+    const handleSignUpOpen = () => setIsSignUpOpen(true);
+    const handleSignUpClose = () => setIsSignUpOpen(false);
+
+    useEffect(() => {
         const fetchSessionDetails = async () => {
             try {
                 const response = await fetch('api/user/session', {
@@ -83,28 +59,24 @@ function ResponsiveAppBar() {
                 console.error('Error fetching session details:', error);
             }
         };
-
         fetchSessionDetails();
     }, []);
+
+    const handleLoginSuccess = (username) => {
+        setIsAuthenticated(true);
+        setUsername(username);
+        handleLoginClose();
+    };
 
     return (
         <AppBar position="static">
             <Container maxWidth="xl" sx={{ width: '60%' }}>
                 <Toolbar disableGutters>
-                    <Box
-                        sx={{
-                            display: 'flex',
-                            justifyContent: 'center',
-                            alignItems: 'center',
-                            width: '100%',
-                        }}
-                    >
-                        {/* Logo */}
+                    <Box sx={{ display: 'flex', justifyContent: 'center', alignItems: 'center', width: '100%' }}>
                         <Button href="/" sx={{ display: { xs: 'none', md: 'flex' }, mr: 1, padding: 0 }}>
                             <img src={logo} alt="Custom Logo" style={{ width: '85px', height: '85px' }} />
                         </Button>
 
-                        {/* Navigation Links */}
                         <Box sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex' } }}>
                             {pages.map((item) => (
                                 <Button
@@ -118,17 +90,13 @@ function ResponsiveAppBar() {
                             ))}
                         </Box>
 
-                        {/* Right-aligned Box (no flexGrow here) */}
                         <Box sx={{ display: 'flex', alignItems: 'center' }}>
                             {isAuthenticated ? (
-                                <Typography variant="body1" sx={{ color: 'white', mr: 2 }}>
-                                    {/* Hello, {username}! */}
-                                    <Tooltip title="Open settings">
-                                        <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
-                                            <Avatar alt="Remy Sharp" src="https://pbs.twimg.com/profile_images/1334279158982053889/Hztrq8H0_400x400.jpg" />
-                                        </IconButton>
-                                    </Tooltip>
-                                </Typography>
+                                <Tooltip title="Open settings">
+                                    <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
+                                        <Avatar alt="User Avatar" src="https://pbs.twimg.com/profile_images/1334279158982053889/Hztrq8H0_400x400.jpg" />
+                                    </IconButton>
+                                </Tooltip>
                             ) : (
                                 <Button variant="contained" color="primary" onClick={handleLoginOpen}>
                                     Login
@@ -139,15 +107,9 @@ function ResponsiveAppBar() {
                                 sx={{ mt: '45px' }}
                                 id="menu-appbar"
                                 anchorEl={anchorElUser}
-                                anchorOrigin={{
-                                    vertical: 'top',
-                                    horizontal: 'right',
-                                }}
+                                anchorOrigin={{ vertical: 'top', horizontal: 'right' }}
                                 keepMounted
-                                transformOrigin={{
-                                    vertical: 'top',
-                                    horizontal: 'right',
-                                }}
+                                transformOrigin={{ vertical: 'top', horizontal: 'right' }}
                                 open={Boolean(anchorElUser)}
                                 onClose={handleCloseUserMenu}
                             >
@@ -161,10 +123,9 @@ function ResponsiveAppBar() {
                     </Box>
                 </Toolbar>
             </Container>
-            <LoginDialog open={isLoginOpen} onClose={handleLoginClose} onSignupOpen={handleSignUpOpen} />
+            <LoginDialog open={isLoginOpen} onClose={handleLoginClose} onSignupOpen={handleSignUpOpen} onLoginSuccess={handleLoginSuccess} />
             <SignUpDialog open={isSignUpOpen} onClose={handleSignUpClose} />
         </AppBar>
-
     );
 }
 
