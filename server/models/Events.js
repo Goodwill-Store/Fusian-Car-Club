@@ -34,6 +34,13 @@ Events.init(
                 isUrl: true,
             },
         },
+        image: {
+            type: DataTypes.STRING,
+            allowNull: false,
+            validate: {
+                isUrl: true,
+            },
+        },
     },
     {
         sequelize,
