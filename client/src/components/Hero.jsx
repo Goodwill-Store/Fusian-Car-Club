@@ -30,12 +30,12 @@ const Hero = ({ onGetStartedClick, onLoginClick }) => {
                 <Typography variant="h5" gutterBottom>
                     Discover amazing content and connect with us!
                 </Typography>
-                <Button variant="contained" color="primary" onClick={onGetStartedClick}>
+                {/* <Button variant="contained" color="primary" onClick={onGetStartedClick}>
                     Get Started
                 </Button>
                 <Button variant="contained" color="primary" onClick={onLoginClick}>
                     Login
-                </Button>
+                </Button> */}
 
             </Box>
 

@@ -1,4 +1,4 @@
-import * as React from 'react';
+import React, { useState } from 'react';
 import AppBar from '@mui/material/AppBar';
 import Box from '@mui/material/Box';
 import Toolbar from '@mui/material/Toolbar';
@@ -13,6 +13,9 @@ import Tooltip from '@mui/material/Tooltip';
 import MenuItem from '@mui/material/MenuItem';
 import AdbIcon from '@mui/icons-material/Adb';
 import logo from '../assets/logo.webp';
+import LoginDialog from './LoginDialog';
+import SignUpDialog from './SignUpDialog'
+
 
 // The page redirects
 const pages = [
@@ -31,9 +34,6 @@ function ResponsiveAppBar() {
     const [anchorElNav, setAnchorElNav] = React.useState(null);
     const [anchorElUser, setAnchorElUser] = React.useState(null);
 
-    const handleOpenNavMenu = (event) => {
-        setAnchorElNav(event.currentTarget);
-    };
     const handleOpenUserMenu = (event) => {
         setAnchorElUser(event.currentTarget);
     };
@@ -45,6 +45,23 @@ function ResponsiveAppBar() {
     const handleCloseUserMenu = () => {
         setAnchorElUser(null);
     };
+
+    const handleLoginOpen = () => {
+        setIsLoginOpen(true);
+    };
+
+    const handleLoginClose = () => {
+        setIsLoginOpen(false);
+    };
+    const handleSignUpOpen = () => {
+        setIsSignUpOpen(true);
+    };
+
+    const handleSignUpClose = () => {
+        setIsSignUpOpen(false);
+    };
+    const [isLoginOpen, setIsLoginOpen] = useState(false);
+    const [isSignUpOpen, setIsSignUpOpen] = useState(false);
 
     // Fetch session details on component mount
     React.useEffect(() => {
@@ -113,11 +130,7 @@ function ResponsiveAppBar() {
                                     </Tooltip>
                                 </Typography>
                             ) : (
-                                <Button
-                                    color="inherit"
-                                    href="/login"
-                                    sx={{ color: 'white' }}
-                                >
+                                <Button variant="contained" color="primary" onClick={handleLoginOpen}>
                                     Login
                                 </Button>
                             )}
@@ -144,11 +157,12 @@ function ResponsiveAppBar() {
                                     </MenuItem>
                                 ))}
                             </Menu>
-
                         </Box>
                     </Box>
                 </Toolbar>
             </Container>
+            <LoginDialog open={isLoginOpen} onClose={handleLoginClose} onSignupOpen={handleSignUpOpen} />
+            <SignUpDialog open={isSignUpOpen} onClose={handleSignUpClose} />
         </AppBar>
 
     );
