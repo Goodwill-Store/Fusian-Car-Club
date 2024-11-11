@@ -1,5 +1,5 @@
 import { createTheme } from '@mui/material/styles';
-import heroImage from './assets/enha.jpg'; // Import image
+import heroImage from './assets/DSC05418-Enhanced-NR.jpg'; // Import image
 
 //Here you can create custom theme. This is the theme thats currently being used. 
 //Everything below is basically garbage, I just added it here so we know its an option.

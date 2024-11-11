@@ -28,13 +28,8 @@ function Home() {
 
     return (
         <div>
-            {/* Pass both handlers to Hero for different buttons */}
             <Hero onGetStartedClick={handleSignUpOpen} onLoginClick={handleLoginOpen} />
-
-            {/* SignUp Dialog */}
             <SignUpDialog open={isSignUpOpen} onClose={handleSignUpClose} />
-
-            {/* Login Dialog */}
             <LoginDialog open={isLoginOpen} onClose={handleLoginClose} />
         </div>
     );
