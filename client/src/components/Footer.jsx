@@ -21,29 +21,29 @@ const Footer = () => {
                     <Grid size={{ xs: 12, sm: 6, md: 2 }}>
                         <List>
                             <ListItem sx={{ fontWeight: 'bold' }}>Solutions </ListItem>
-                            <ListItem>Gallery</ListItem>
-                            <ListItem>Events</ListItem>
-                            <ListItem>Blogs</ListItem>
+                            <ListItem><Link href="#">Gallery</Link></ListItem>
+                            <ListItem><Link href="#">Events</Link></ListItem>
+                            <ListItem><Link href="#">Blog</Link></ListItem>
                         </List>
                     </Grid>
                     <Grid size={{ xs: 12, sm: 6, md: 2 }}>
                         <List>
                             <ListItem sx={{ fontWeight: 'bold' }}>Pricing</ListItem>
-                            <ListItem>Merch</ListItem>
+                            <ListItem><Link href="#">Merch</Link></ListItem>
                         </List>
                     </Grid>
                     <Grid size={{ xs: 12, sm: 6, md: 2 }}>
                         <List>
                             <ListItem sx={{ fontWeight: 'bold' }}>Company</ListItem>
-                            <ListItem>About Us</ListItem>
+                            <ListItem><Link href="#">About Us</Link></ListItem>
 
                         </List>
                     </Grid>
                     <Grid size={{ xs: 12, sm: 6, md: 2 }}>
                         <List>
                             <ListItem sx={{ fontWeight: 'bold' }}>Legal</ListItem>
-                            <ListItem>Terms</ListItem>
-                            <ListItem>Disclaimers</ListItem>
+                            <ListItem><Link href="#">Terms</Link></ListItem>
+                            <ListItem><Link href="#">Disclaimers</Link></ListItem>
                         </List>
                     </Grid>
                     <Grid size={{ xs: 12, sm: 12, md: 4 }}>

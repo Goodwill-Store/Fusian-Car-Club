@@ -83,7 +83,7 @@ const theme = createTheme({
         MuiInputLabel: {
             styleOverrides: {
                 root: {
-                    color: 'rgba(255, 255, 255, 0.7)', // Label color
+                    color: 'rgba(90, 90, 90)', // Label color
                     '&.Mui-focused': {
                         color: '#EA1D25', // Label color when focused
                     },
