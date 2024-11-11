@@ -1,21 +1,14 @@
 const router = require('express').Router();
-const { Inventory } = require('../../models');
+const { Post } = require('../../models');
 const { Op } = require('sequelize');
 
 router.get('/', async (req, res) => {
     try {
-        const items = await Inventory.findAll({
-            where: {
-                count: {
-                    [Op.ne]: 0,  // Ensures count is not equal to 0
-                }
-            }
-        });
-
-        res.status(200).json(items);
+        const posts = await Post.findAll({});
+        res.status(200).json(posts);
     } catch (err) {
-        console.error('Error fetching inventory:', err);
-        res.status(500).json({ message: 'An error occurred while fetching inventory items.', error: err.message });
+        console.error('Error fetching Post:', err);
+        res.status(500).json({ message: 'An error occurred while fetching Post.', error: err.message });
     }
 });
 

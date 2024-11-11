@@ -2,6 +2,7 @@ const User = require('./User');
 const Events = require('./Events');
 const Inventory = require('./Inventory');
 const Orders = require('./Orders');
+const Post = require('./Post');
 
 // One-to-many relationship: A user can have many orders
 User.hasMany(Orders, {
@@ -21,4 +22,5 @@ module.exports = {
   Events,
   Inventory,
   Orders,
+  Post
 };
