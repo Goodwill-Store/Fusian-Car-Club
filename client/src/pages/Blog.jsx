@@ -1,12 +1,51 @@
-import React from 'react';
-import { Box } from '@mui/material';
-import EventCards from '../components/EventCards';
+import React, { useState, useEffect } from 'react';
+import { Box, CircularProgress, Typography } from '@mui/material';
+import BlogPost from '../components/BlogPost';
 
 const Blog = ({ urls }) => {
+    const [posts, setPosts] = useState([]);
+    const [loading, setLoading] = useState(true);
+    const [error, setError] = useState(null);
+
+    useEffect(() => {
+        const fetchPosts = async () => {
+            try {
+                const response = await fetch('/api/blog', {
+                    method: 'GET',
+                    credentials: 'include', // Include credentials if required for session management
+                });
+                if (!response.ok) {
+                    throw new Error('Failed to fetch blog posts');
+                }
+                const data = await response.json();
+                setPosts(data);
+            } catch (err) {
+                setError(err.message);
+            } finally {
+                setLoading(false);
+            }
+        };
+
+        fetchPosts();
+    }, []);
+
+    if (loading) {
+        return <CircularProgress />; // Show a loading spinner
+    }
+
+    if (error) {
+        return <Typography color="error">{error}</Typography>; // Show error message
+    }
+
     return (
         <Box sx={{ display: 'flex', justifyContent: 'center', gap: 2, my: 2, flexWrap: 'wrap' }}>
-
-            <iframe width="1012" height="569" src="https://www.youtube.com/embed/wX-200CwxeM?autoplay=1&mute=1&start=33" title="ENHYPEN (엔하이픈) &#39;Drunk-Dazed&#39; Official MV" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+            {posts.length > 0 ? (
+                posts.map((post) => (
+                    <BlogPost key={post.id} post={post} />
+                ))
+            ) : (
+                <Typography>No blog posts found.</Typography>
+            )}
         </Box>
     );
 };

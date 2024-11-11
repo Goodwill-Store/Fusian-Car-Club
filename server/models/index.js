@@ -12,6 +12,12 @@ Orders.belongsTo(User, {
   foreignKey: 'user_id',
 });
 
+User.hasMany(Post, {
+  foreignKey: 'author',
+});
+Post.belongsTo(User, {
+  foreignKey: 'author',
+});
 // One-to-many relationship: An order can contain a single product (inventory)
 Orders.belongsTo(Inventory, {
   foreignKey: 'product_id',
