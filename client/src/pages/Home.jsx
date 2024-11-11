@@ -1,7 +1,8 @@
 import React, { useState } from 'react';
 import Hero from '../components/Hero';
 import SignUpDialog from '../components/SignUpDialog';
-import LoginDialog from '../components/LoginDialog'; // Assuming you have this component
+import LoginDialog from '../components/LoginDialog';
+import { Box } from '@mui/material';
 
 function Home() {
     // Separate states for SignUp and Login dialogs
@@ -27,11 +28,20 @@ function Home() {
     };
 
     return (
-        <div>
+        <Box
+            sx={{
+                flex: 1,  // Allows Home to expand to fill available space
+                display: 'flex',
+                flexDirection: 'column',
+                alignItems: 'center',
+                justifyContent: 'center',
+                textAlign: 'center',
+            }}
+        >
             <Hero onGetStartedClick={handleSignUpOpen} onLoginClick={handleLoginOpen} />
             <SignUpDialog open={isSignUpOpen} onClose={handleSignUpClose} />
             <LoginDialog open={isLoginOpen} onClose={handleLoginClose} />
-        </div>
+        </Box>
     );
 }
 

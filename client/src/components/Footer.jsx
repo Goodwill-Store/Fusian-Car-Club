@@ -20,35 +20,30 @@ const Footer = () => {
                 <Grid container spacing={2}>
                     <Grid size={{ xs: 12, sm: 6, md: 2 }}>
                         <List>
-                            <ListItem sx={{ fontWeight: 'bold' }}>Solutions</ListItem>
-                            <ListItem>Marketing</ListItem>
-                            <ListItem>Analytics</ListItem>
-                            <ListItem>Commerce</ListItem>
-                            <ListItem>Insights</ListItem>
+                            <ListItem sx={{ fontWeight: 'bold' }}>Contact</ListItem>
+                            <ListItem>About Us</ListItem>
+                            <ListItem>Contact Us</ListItem>
                         </List>
                     </Grid>
                     <Grid size={{ xs: 12, sm: 6, md: 2 }}>
                         <List>
-                            <ListItem sx={{ fontWeight: 'bold' }}>Pricing</ListItem>
+                            <ListItem sx={{ fontWeight: 'bold' }}>Social Media</ListItem>
                             <ListItem>Documentation</ListItem>
                             <ListItem>Guides</ListItem>
-                            <ListItem>API Status</ListItem>
                         </List>
                     </Grid>
                     <Grid size={{ xs: 12, sm: 6, md: 2 }}>
                         <List>
-                            <ListItem sx={{ fontWeight: 'bold' }}>Company</ListItem>
+                            <ListItem sx={{ fontWeight: 'bold' }}>Navigate</ListItem>
                             <ListItem>About</ListItem>
                             <ListItem>Blog</ListItem>
-                            <ListItem>Jobs</ListItem>
-                            <ListItem>Press</ListItem>
-                            <ListItem>Partners</ListItem>
+
                         </List>
                     </Grid>
                     <Grid size={{ xs: 12, sm: 6, md: 2 }}>
                         <List>
                             <ListItem sx={{ fontWeight: 'bold' }}>Legal</ListItem>
-                            <ListItem>Privacy</ListItem>
+                            <ListItem>Privacy Policy</ListItem>
                             <ListItem>Terms</ListItem>
                         </List>
                     </Grid>

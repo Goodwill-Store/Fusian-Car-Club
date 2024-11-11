@@ -51,6 +51,15 @@ const theme = createTheme({
                         backgroundAttachment: 'fixed',
                         // filter: 'blur(4px)', // Blur  background
                         zIndex: -1, // Ensure it's behind the content
+                    }, '&::after': {
+                        content: '""',
+                        position: 'fixed',
+                        top: 0,
+                        left: 0,
+                        width: '100%',
+                        height: '100%',
+                        backgroundColor: 'rgba(0, 0, 0, 0.5)', // Semi-transparent overlay color
+                        zIndex: -1, // Ensure it's between the image and content
                     },
                 },
             },

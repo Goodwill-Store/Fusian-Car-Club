@@ -9,39 +9,40 @@ import Blog from './pages/Blog';
 import ResponsiveAppBar from './components/ResponsiveAppBar';
 import Footer from './components/Footer';
 import { ThemeProvider } from '@mui/material/styles';
-import theme from './theme'; // applying custom theme globally
+import theme from './theme';
 import { CssBaseline, Box } from '@mui/material';
 
 function App() {
   return (
     <ThemeProvider theme={theme}>
       <CssBaseline />
-      <Box
-        sx={{
-          display: 'flex',
-          flexDirection: 'column',
-          minHeight: '100vh', // Full viewport height
-        }}
-      >
-        <ResponsiveAppBar />
+      <Router>
+        <Box
+          sx={{
+            display: 'flex',
+            flexDirection: 'column',
+            minHeight: '100vh',
+          }}
+        >
+          {/* Navbar */}
+          <ResponsiveAppBar />
 
-        {/* Main content area */}
-        <Box sx={{ flex: 1 }}>
-          <Router>
+          {/* Main content area, expanding to fill space between Navbar and Footer */}
+          <Box sx={{ flex: 1, display: 'flex', flexDirection: 'column' }}>
             <Routes>
               <Route path="/" element={<Home />} />
               <Route path="/test" element={<Test />} />
-              <Route path="/Gallery" element={<Gallery />} />
+              <Route path="/gallery" element={<Gallery />} />
               <Route path="/events" element={<Events />} />
-              <Route path="/Merch" element={<Merch />} />
-              <Route path="/Blog" element={<Blog />} />
+              <Route path="/merch" element={<Merch />} />
+              <Route path="/blog" element={<Blog />} />
             </Routes>
-          </Router>
-        </Box>
+          </Box>
 
-        {/* Footer */}
-        <Footer />
-      </Box>
+          {/* Footer */}
+          <Footer />
+        </Box>
+      </Router>
     </ThemeProvider>
   );
 }
