@@ -37,9 +37,9 @@ const theme = createTheme({
         MuiCssBaseline: {
             styleOverrides: {
                 body: {
-                    zIndex: 0, // Ensure the content stays above the pseudo-element
+                    zIndex: 0,
                     '&::before': {
-                        content: '""', // Empty content to create the pseudo-element
+                        content: '""',
                         position: 'fixed',
                         top: 0,
                         left: 0,
@@ -49,9 +49,9 @@ const theme = createTheme({
                         backgroundSize: 'cover',
                         backgroundPosition: 'center',
                         backgroundAttachment: 'fixed',
-                        // filter: 'blur(4px)', // Blur  background
-                        zIndex: -1, // Ensure it's behind the content
-                    }, '&::after': {
+                        zIndex: -1,
+                    },
+                    '&::after': {
                         content: '""',
                         position: 'fixed',
                         top: 0,
@@ -59,7 +59,23 @@ const theme = createTheme({
                         width: '100%',
                         height: '100%',
                         backgroundColor: 'rgba(0, 0, 0, 0.5)', // Semi-transparent overlay color
-                        zIndex: -1, // Ensure it's between the image and content
+                        zIndex: -1,
+                    },
+                },
+            },
+        },
+        MuiFilledInput: {
+            styleOverrides: {
+                root: {
+                    backgroundColor: '#3B3C3C', // Dark background for filled input
+                    '& .MuiFilledInput-input': {
+                        color: '#ffffff', // Text color
+                    },
+                    '&:hover': {
+                        backgroundColor: '#2C2D2D', // Darker on hover
+                    },
+                    '&.Mui-focused': {
+                        backgroundColor: '#3B3C3C', // Keep same color when focused
                     },
                 },
             },
@@ -67,7 +83,10 @@ const theme = createTheme({
         MuiInputLabel: {
             styleOverrides: {
                 root: {
-                    color: '#000000', // Black label text
+                    color: 'rgba(255, 255, 255, 0.7)', // Label color
+                    '&.Mui-focused': {
+                        color: '#EA1D25', // Label color when focused
+                    },
                 },
             },
         },

@@ -20,31 +20,30 @@ const Footer = () => {
                 <Grid container spacing={2}>
                     <Grid size={{ xs: 12, sm: 6, md: 2 }}>
                         <List>
-                            <ListItem sx={{ fontWeight: 'bold' }}>Contact</ListItem>
+                            <ListItem sx={{ fontWeight: 'bold' }}>Solutions </ListItem>
+                            <ListItem>Gallery</ListItem>
+                            <ListItem>Events</ListItem>
+                            <ListItem>Blogs</ListItem>
+                        </List>
+                    </Grid>
+                    <Grid size={{ xs: 12, sm: 6, md: 2 }}>
+                        <List>
+                            <ListItem sx={{ fontWeight: 'bold' }}>Pricing</ListItem>
+                            <ListItem>Merch</ListItem>
+                        </List>
+                    </Grid>
+                    <Grid size={{ xs: 12, sm: 6, md: 2 }}>
+                        <List>
+                            <ListItem sx={{ fontWeight: 'bold' }}>Company</ListItem>
                             <ListItem>About Us</ListItem>
-                            <ListItem>Contact Us</ListItem>
-                        </List>
-                    </Grid>
-                    <Grid size={{ xs: 12, sm: 6, md: 2 }}>
-                        <List>
-                            <ListItem sx={{ fontWeight: 'bold' }}>Social Media</ListItem>
-                            <ListItem>Documentation</ListItem>
-                            <ListItem>Guides</ListItem>
-                        </List>
-                    </Grid>
-                    <Grid size={{ xs: 12, sm: 6, md: 2 }}>
-                        <List>
-                            <ListItem sx={{ fontWeight: 'bold' }}>Navigate</ListItem>
-                            <ListItem>About</ListItem>
-                            <ListItem>Blog</ListItem>
 
                         </List>
                     </Grid>
                     <Grid size={{ xs: 12, sm: 6, md: 2 }}>
                         <List>
                             <ListItem sx={{ fontWeight: 'bold' }}>Legal</ListItem>
-                            <ListItem>Privacy Policy</ListItem>
                             <ListItem>Terms</ListItem>
+                            <ListItem>Disclaimers</ListItem>
                         </List>
                     </Grid>
                     <Grid size={{ xs: 12, sm: 12, md: 4 }}>
@@ -61,7 +60,7 @@ const Footer = () => {
                                         <TextField id="outlined-basic" label="Enter your email" variant="filled" fullWidth />
                                     </Grid>
                                     <Grid size={{ xs: 4 }}>
-                                        <Button variant="contained" color="secondary" sx={{ height: '56px' }}> {/* Adjust this height */}
+                                        <Button variant="contained" color="secondary" sx={{ height: '56px' }}>
                                             Subscribe
                                         </Button>
                                     </Grid>
