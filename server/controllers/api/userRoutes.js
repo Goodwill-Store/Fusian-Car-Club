@@ -5,7 +5,6 @@ const { User } = require('../../models');
 router.post('/signup', async (req, res) => {
   try {
     console.log("signup");
-
     const existingUser = await User.findOne({
       where: {
         user_name: req.body.username,
@@ -30,7 +29,9 @@ router.post('/signup', async (req, res) => {
     const userData = await User.create({
       user_name: req.body.username,
       email: req.body.email,
-      password: req.body.password, // Don't hash right now
+      password: req.body.password,
+      //set user rolde to 'user
+      role: 1
     });
 
     req.session.save(() => {

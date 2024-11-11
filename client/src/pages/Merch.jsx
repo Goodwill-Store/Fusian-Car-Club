@@ -1,29 +1,45 @@
 import React, { useState, useEffect } from 'react';
-import Box from '@mui/material/Box';
+import { Box, CircularProgress, Typography } from '@mui/material';
 import Card from '@mui/material/Card';
 import CardContent from '@mui/material/CardContent';
 import CardMedia from '@mui/material/CardMedia';
-import Typography from '@mui/material/Typography';
 import Grid from '@mui/material/Grid';
 import Button from '@mui/material/Button';
-import merchImageHaerin from '../assets/MerchImages/haerin.jpg';
-import merchImageHanni from '../assets/MerchImages/hanni.jpg';
-import merchImageHyein from '../assets/MerchImages/hyein.jpg';
-import merchImageMinji from '../assets/MerchImages/minji.jpg';
-
-const merchItems = [
-  { id: 1, name: 'Integra Target En-Route T-Shirt', price: '$29.99 USD', img: merchImageHaerin, soldOut: true },
-  { id: 2, name: 'SEIKERS "Seikersclub & 10-21" White T-Shirt', price: '$34.99 USD', img: merchImageHanni, soldOut: true },
-  { id: 3, name: 'SEIKERS "Seikersclub & 10-21" Grey T-Shirt', price: '$34.99 USD', img: merchImageHyein, soldOut: true },
-  { id: 4, name: 'SEIKERS "Driven to Madness" Grey Hoodie', price: '$59.99 USD', img: merchImageMinji, soldOut: true },
-];
 
 function Merch() {
   const [items, setItems] = useState([]);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
 
   useEffect(() => {
-    setItems(merchItems);
+    const fetchEvents = async () => {
+      try {
+        const response = await fetch('/api/merch', {
+          method: 'GET',
+          credentials: 'include',
+        });
+        if (!response.ok) {
+          throw new Error('Failed to fetch items');
+        }
+        const data = await response.json();
+        setItems(data);
+      } catch (err) {
+        setError(err.message);
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    fetchEvents();
   }, []);
+
+  if (loading) {
+    return <CircularProgress />; // Show a loading spinner
+  }
+
+  if (error) {
+    return <Typography color="error">{error}</Typography>; // Show error message
+  }
 
   return (
     <Box sx={{ flexGrow: 1, p: 3 }}>
@@ -46,13 +62,13 @@ function Merch() {
               <CardMedia
                 component="img"
                 height="250"
-                image={item.img}
-                alt={item.name}
+                image={item.image}
+                alt={item.type}
                 sx={{ objectFit: 'cover' }}
               />
               <CardContent sx={{ flexGrow: 1, p: 2 }}>
                 <Typography variant="h6" component="div" gutterBottom>
-                  {item.name}
+                  {item.type}
                 </Typography>
                 <Typography variant="body1" color="text.primary">
                   {item.price}

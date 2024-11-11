@@ -10,7 +10,7 @@ const EventCards = ({ event }) => {
     return (
         <Card sx={{
             display: 'flex',
-            width: '80%',
+            width: '60%',
             mb: 3,
             marginLeft: 'auto',
             marginRight: 'auto',

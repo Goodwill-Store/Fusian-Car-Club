@@ -1,11 +1,11 @@
 const { Model, DataTypes } = require('sequelize');
 const sequelize = require('../config/database.js');
 const User = require('./User');
-const Inventory = require('./Inventory');
 
-class Orders extends Model { }
+class Post extends Model {
+}
 
-Orders.init(
+Post.init(
     {
         id: {
             type: DataTypes.INTEGER,
@@ -13,7 +13,7 @@ Orders.init(
             primaryKey: true,
             autoIncrement: true,
         },
-        user_id: {
+        author: {
             type: DataTypes.INTEGER,
             allowNull: false,
             references: {
@@ -21,34 +21,23 @@ Orders.init(
                 key: 'id',
             },
         },
-        product_id: {
-            type: DataTypes.INTEGER,
-            allowNull: false,
-            references: {
-                model: Inventory,
-                key: 'id',
-            },
-        },
-        payment_id: {
+        title: {
             type: DataTypes.STRING,
             allowNull: false,
         },
-        payment_status: {
-            type: DataTypes.STRING,
-            allowNull: true,
-        },
-        shipping_address: {
-            type: DataTypes.STRING,
-            allowNull: true,
+        // Text field for larger body content
+        body: {
+            type: DataTypes.TEXT,
+            allowNull: false,
         },
     },
     {
         sequelize,
-        timestamps: false,
+        timestamps: true,
         freezeTableName: true,
         underscored: true,
-        modelName: 'orders',
+        modelName: 'post',
     }
 );
 
-module.exports = Orders;
+module.exports = Post;

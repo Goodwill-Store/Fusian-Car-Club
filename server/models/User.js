@@ -1,6 +1,7 @@
 const { Model, DataTypes } = require('sequelize');
 const sequelize = require('../config/database.js');
 const bcrypt = require('bcrypt');
+const Roles = require('./Roles');
 
 class User extends Model {
   checkPassword(loginPw) {
@@ -33,6 +34,14 @@ User.init(
       allowNull: false,
       validate: {
         len: [2, 10],
+      },
+    },
+    role: {
+      type: DataTypes.INTEGER,
+      allowNull: false,
+      references: {
+        model: Roles,
+        key: 'id',
       },
     },
   },
