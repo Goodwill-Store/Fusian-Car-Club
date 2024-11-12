@@ -1,11 +1,12 @@
 import React, { useState, useEffect } from 'react';
-import { Box, CircularProgress, Typography } from '@mui/material';
+import { Box, CircularProgress, Typography, Button } from '@mui/material';
 import BlogPost from '../components/BlogPost';
 
 const Blog = ({ urls }) => {
     const [posts, setPosts] = useState([]);
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState(null);
+    const [isAdmin, setIsAdmin] = useState(false);
 
     useEffect(() => {
         const fetchPosts = async () => {
@@ -26,7 +27,24 @@ const Blog = ({ urls }) => {
             }
         };
 
+        const fetchSessionDetails = async () => {
+            try {
+                const response = await fetch('/api/user/session', {
+                    method: 'GET',
+                    credentials: 'include',
+                });
+                const data = await response.json();
+                console.log(data);
+                if (data.logged_in) {
+                    setIsAdmin(data.isAdmin); // Assume 'isAdmin' is returned in session details
+                }
+            } catch (error) {
+                console.error('Error fetching session details:', error);
+            }
+        };
+
         fetchPosts();
+        fetchSessionDetails();
     }, []);
 
     if (loading) {
@@ -38,14 +56,26 @@ const Blog = ({ urls }) => {
     }
 
     return (
-        <Box sx={{ display: 'flex', justifyContent: 'center', gap: 2, my: 2, flexWrap: 'wrap' }}>
-            {posts.length > 0 ? (
-                posts.map((post) => (
-                    <BlogPost key={post.id} post={post} />
-                ))
-            ) : (
-                <Typography>No blog posts found.</Typography>
-            )}
+        <Box sx={{ display: 'flex', flexDirection: 'column', alignItems: 'center', my: 2 }}>
+            {isAdmin ? (
+                <Button
+                    variant="contained"
+                    color="secondary"
+                    sx={{ mb: 2 }}
+                    onClick={() => { /* Handle create post action here */ }}
+                >
+                    Create Post
+                </Button>
+            ) : <Typography color="error">TEST</Typography>}
+            <Box sx={{ display: 'flex', justifyContent: 'center', gap: 2, flexWrap: 'wrap' }}>
+                {posts.length > 0 ? (
+                    posts.map((post) => (
+                        <BlogPost key={post.id} post={post} />
+                    ))
+                ) : (
+                    <Typography>No blog posts found.</Typography>
+                )}
+            </Box>
         </Box>
     );
 };

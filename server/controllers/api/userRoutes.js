@@ -68,6 +68,8 @@ router.post('/login', async (req, res) => {
         req.session.user_id = userData.id;
         req.session.logged_in = true;
         req.session.username = userData.user_name;
+        //to do: this can't stay like that
+        req.session.admin = userData.role == 3 ? true : false;
         console.log(req.sessionID);
         res.json({ sessionID: req.sessionID });
       });
@@ -91,6 +93,7 @@ router.get('/session', (req, res) => {
     res.json({
       username: req.session.username,
       logged_in: req.session.logged_in,
+      isAdmin: req.session.admin
     });
   } else {
     res.json({ logged_in: false });

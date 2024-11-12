@@ -25,4 +25,33 @@ router.get('/', async (req, res) => {
     }
 });
 
+router.post('/create', async (req, res) => {
+    try {
+        const { title, content, authorId } = req.body;
+
+        // Check if admin
+        if (!req.session.admin) {
+            return res.status(403).json({ message: 'Unauthorized. Only admins can create blog posts.' });
+        }
+
+        // i dont like how this looks, frontend will validate form inputs so maybe we dont need that at all... ?
+        if (!title || !content || !authorId) {
+            return res.status(400).json({ message: 'Title, content, and authorId are required.' });
+        }
+
+        // Create a new post
+        const newPost = await Post.create({
+            title,
+            content,
+            authorId
+        });
+
+        res.status(201).json(newPost);
+    } catch (err) {
+        console.error('Error creating post:', err);
+        res.status(500).json({ message: 'An error occurred while creating the post.', error: err.message });
+    }
+});
+
+
 module.exports = router;

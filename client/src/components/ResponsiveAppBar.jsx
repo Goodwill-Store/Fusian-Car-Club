@@ -116,7 +116,7 @@ function ResponsiveAppBar() {
                                     </IconButton>
                                 </Tooltip>
                             ) : (
-                                <Button variant="contained" color="primary" onClick={handleLoginOpen}>
+                                <Button variant="contained" color="secondary" onClick={handleLoginOpen}>
                                     Login
                                 </Button>
                             )}
