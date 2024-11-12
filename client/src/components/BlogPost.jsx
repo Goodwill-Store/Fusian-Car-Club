@@ -3,7 +3,6 @@ import Card from '@mui/material/Card';
 import CardContent from '@mui/material/CardContent';
 import Typography from '@mui/material/Typography';
 
-// Accept post data as props
 const BlogPost = ({ post }) => {
 
     return (
@@ -16,10 +15,10 @@ const BlogPost = ({ post }) => {
         }}>
             <CardContent sx={{ flex: '1' }}>
                 <Typography gutterBottom variant="h5" component="div">
-                    {post.title} {/* Display post title */}
+                    {post.title}
                 </Typography>
                 <Typography variant="body2" sx={{ color: 'text.secondary' }}>
-                    {post.body} {/* Display post description */}
+                    {post.body}
                 </Typography>
                 <Typography variant="body2" sx={{ color: 'text.secondary', fontStyle: 'italic' }}>
                     Author: {post.author}
