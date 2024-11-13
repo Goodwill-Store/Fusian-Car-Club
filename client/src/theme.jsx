@@ -102,13 +102,6 @@ const theme = createTheme({
                 },
             },
         },
-        MuiTypography: {
-            styleOverrides: {
-                root: {
-                    color: '#000000', // Ensures black text color for typography inside modal
-                },
-            },
-        },
     },
 });
 
