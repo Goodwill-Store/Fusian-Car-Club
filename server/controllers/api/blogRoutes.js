@@ -7,7 +7,7 @@ router.get('/', async (req, res) => {
         const posts = await Post.findAll({
             include: [{
                 model: User,
-                attributes: ['user_name'], // Fetch 'user_name' attribute of User model
+                attributes: ['user_name'],
             }],
             order: [['id', 'DESC']],
         });
@@ -34,7 +34,7 @@ router.post('/create', async (req, res) => {
             return res.status(403).json({ message: 'Unauthorized. Only admins can create blog posts.' });
         }
 
-        // Create a new post with title, content, and authorId
+
         const newPost = await Post.create({
             title,
             body,
