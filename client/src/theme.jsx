@@ -1,8 +1,6 @@
 import { createTheme } from '@mui/material/styles';
 import heroImage from './assets/DSC05418-Enhanced-NR.jpg'; // Import image
 
-//Here you can create custom theme. This is the theme thats currently being used. 
-//Everything below is basically garbage, I just added it here so we know its an option.
 const theme = createTheme({
     palette: {
         primary: {
@@ -18,19 +16,19 @@ const theme = createTheme({
             main: '#EA1D25',
         },
         background: {
-            default: '#FFFFFF', // Default background color
-            paper: '#F5F5F5', // Paper background color
+            default: '#FFFFFF',
+            paper: '#F5F5F5',
         },
     },
     typography: {
         fontFamily: 'Inter',
         h1: {
-            fontSize: '2rem', // Customize heading sizes
-            color: 'white'
+            fontSize: '2rem',
+            color: 'white',
         },
         body1: {
             fontSize: '1rem',
-            color: 'white'
+            color: 'white',
         },
     },
     components: {
@@ -58,7 +56,7 @@ const theme = createTheme({
                         left: 0,
                         width: '100%',
                         height: '100%',
-                        backgroundColor: 'rgba(0, 0, 0, 0.5)', // Semi-transparent overlay color
+                        backgroundColor: 'rgba(0, 0, 0, 0.5)',
                         zIndex: -1,
                     },
                 },
@@ -67,15 +65,15 @@ const theme = createTheme({
         MuiFilledInput: {
             styleOverrides: {
                 root: {
-                    backgroundColor: '#3B3C3C', // Dark background for filled input
+                    backgroundColor: '#3B3C3C',
                     '& .MuiFilledInput-input': {
-                        color: '#ffffff', // Text color
+                        color: '#ffffff',
                     },
                     '&:hover': {
-                        backgroundColor: '#2C2D2D', // Darker on hover
+                        backgroundColor: '#2C2D2D',
                     },
                     '&.Mui-focused': {
-                        backgroundColor: '#3B3C3C', // Keep same color when focused
+                        backgroundColor: '#3B3C3C',
                     },
                 },
             },
@@ -83,9 +81,9 @@ const theme = createTheme({
         MuiInputLabel: {
             styleOverrides: {
                 root: {
-                    color: 'rgba(90, 90, 90)', // Label color
+                    color: 'rgba(90, 90, 90)',
                     '&.Mui-focused': {
-                        color: '#EA1D25', // Label color when focused
+                        color: '#EA1D25',
                     },
                 },
             },
@@ -93,7 +91,21 @@ const theme = createTheme({
         MuiLink: {
             styleOverrides: {
                 root: {
-                    color: '#ffffff', // Make links white by default
+                    color: '#ffffff',
+                },
+            },
+        },
+        MuiModal: {
+            styleOverrides: {
+                root: {
+                    color: '#000000', // Ensures all text in modals is black
+                },
+            },
+        },
+        MuiTypography: {
+            styleOverrides: {
+                root: {
+                    color: '#000000', // Ensures black text color for typography inside modal
                 },
             },
         },

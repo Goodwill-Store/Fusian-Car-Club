@@ -5,6 +5,7 @@ import CardContent from '@mui/material/CardContent';
 import CardMedia from '@mui/material/CardMedia';
 import Grid from '@mui/material/Grid';
 import Button from '@mui/material/Button';
+import AddShoppingCartIcon from '@mui/icons-material/AddShoppingCart';
 
 function Merch() {
   const [items, setItems] = useState([]);
@@ -81,7 +82,7 @@ function Merch() {
                   </Button>
                 ) : (
                   <Button variant="contained" color="primary">
-                    Add to Cart
+                    <AddShoppingCartIcon />
                   </Button>
                 )}
               </Box>

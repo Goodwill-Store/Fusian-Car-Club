@@ -1,4 +1,6 @@
 import React, { useState, useEffect } from 'react';
+import ReactQuill from 'react-quill';
+import 'react-quill/dist/quill.snow.css'; // Import Quill styles
 import { Box, CircularProgress, Typography, Button, Modal, TextField } from '@mui/material';
 import BlogPost from '../components/BlogPost';
 
@@ -53,7 +55,6 @@ const Blog = ({ urls }) => {
     const handleCloseModal = () => setOpenModal(false);
 
     const handleCreatePost = async () => {
-        // Perform validation if needed
         if (!title || !body) {
             return alert("Please enter both title and body.");
         }
@@ -62,12 +63,12 @@ const Blog = ({ urls }) => {
             const response = await fetch('/api/blog/create', {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify({ title, body: body }),
+                body: JSON.stringify({ title, body }),
                 credentials: 'include',
             });
             if (response.ok) {
                 const newPost = await response.json();
-                setPosts([newPost, ...posts]); // Add the new post to the top of the list
+                setPosts([newPost, ...posts]); // Add new post to top of the list
                 setTitle('');
                 setBody('');
                 handleCloseModal();
@@ -135,14 +136,11 @@ const Blog = ({ urls }) => {
                         onChange={(e) => setTitle(e.target.value)}
                         fullWidth
                     />
-                    <TextField
-                        label="Body"
-                        variant="outlined"
+                    <ReactQuill
                         value={body}
-                        onChange={(e) => setBody(e.target.value)}
-                        multiline
-                        rows={4}
-                        fullWidth
+                        onChange={setBody}
+                        placeholder="Write your post content here..."
+                        style={{ height: '200px' }}
                     />
                     <Button variant="contained" color="primary" onClick={handleCreatePost}>
                         Submit
