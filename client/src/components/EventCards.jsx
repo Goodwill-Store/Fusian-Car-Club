@@ -4,6 +4,7 @@ import CardContent from '@mui/material/CardContent';
 import CardMedia from '@mui/material/CardMedia';
 import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
+import LocationOnIcon from '@mui/icons-material/LocationOn';
 
 // Accept event data as props
 const EventCards = ({ event }) => {
@@ -33,12 +34,12 @@ const EventCards = ({ event }) => {
                 <Button
                     size="small"
                     component="a"
-                    href={event.location} // Use event's location URL
+                    href={event.location}
                     target="_blank"
                     rel="noopener noreferrer"
                     sx={{ mt: 2 }}
                 >
-                    Location
+                    <LocationOnIcon />
                 </Button>
             </CardContent>
         </Card>
