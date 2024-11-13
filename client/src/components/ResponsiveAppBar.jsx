@@ -7,6 +7,7 @@ import Typography from '@mui/material/Typography';
 import Menu from '@mui/material/Menu';
 import Container from '@mui/material/Container';
 import Avatar from '@mui/material/Avatar';
+import AccountCircleIcon from '@mui/icons-material/AccountCircle';
 import Button from '@mui/material/Button';
 import Tooltip from '@mui/material/Tooltip';
 import MenuItem from '@mui/material/MenuItem';
@@ -112,7 +113,8 @@ function ResponsiveAppBar() {
                             {isAuthenticated ? (
                                 <Tooltip title="Open settings">
                                     <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
-                                        <Avatar alt="User Avatar" src="https://pbs.twimg.com/profile_images/1334279158982053889/Hztrq8H0_400x400.jpg" />
+                                        {/* to do: fix icon size */}
+                                        <AccountCircleIcon sx={{ fontSize: 40 }} />
                                     </IconButton>
                                 </Tooltip>
                             ) : (
