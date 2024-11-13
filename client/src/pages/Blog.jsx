@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Box, CircularProgress, Typography, Button } from '@mui/material';
+import { Box, CircularProgress, Typography, Button, Modal, TextField } from '@mui/material';
 import BlogPost from '../components/BlogPost';
 
 const Blog = ({ urls }) => {
@@ -7,13 +7,16 @@ const Blog = ({ urls }) => {
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState(null);
     const [isAdmin, setIsAdmin] = useState(false);
+    const [openModal, setOpenModal] = useState(false);
+    const [title, setTitle] = useState('');
+    const [body, setBody] = useState('');
 
     useEffect(() => {
         const fetchPosts = async () => {
             try {
                 const response = await fetch('/api/blog', {
                     method: 'GET',
-                    credentials: 'include', // Include credentials if required for session management
+                    credentials: 'include',
                 });
                 if (!response.ok) {
                     throw new Error('Failed to fetch blog posts');
@@ -34,9 +37,8 @@ const Blog = ({ urls }) => {
                     credentials: 'include',
                 });
                 const data = await response.json();
-                console.log(data);
                 if (data.logged_in) {
-                    setIsAdmin(data.isAdmin); // Assume 'isAdmin' is returned in session details
+                    setIsAdmin(data.isAdmin);
                 }
             } catch (error) {
                 console.error('Error fetching session details:', error);
@@ -47,35 +49,106 @@ const Blog = ({ urls }) => {
         fetchSessionDetails();
     }, []);
 
+    const handleOpenModal = () => setOpenModal(true);
+    const handleCloseModal = () => setOpenModal(false);
+
+    const handleCreatePost = async () => {
+        // Perform validation if needed
+        if (!title || !body) {
+            return alert("Please enter both title and body.");
+        }
+
+        try {
+            const response = await fetch('/api/blog/create', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ title, body: body }),
+                credentials: 'include',
+            });
+            if (response.ok) {
+                const newPost = await response.json();
+                setPosts([newPost, ...posts]); // Add the new post to the top of the list
+                setTitle('');
+                setBody('');
+                handleCloseModal();
+            } else {
+                console.error('Failed to create post');
+            }
+        } catch (error) {
+            console.error('Error creating post:', error);
+        }
+    };
+
     if (loading) {
-        return <CircularProgress />; // Show a loading spinner
+        return <CircularProgress />;
     }
 
     if (error) {
-        return <Typography color="error">{error}</Typography>; // Show error message
+        return <Typography color="error">{error}</Typography>;
     }
 
     return (
         <Box sx={{ display: 'flex', flexDirection: 'column', alignItems: 'center', my: 2 }}>
-            {isAdmin ? (
-                <Button
-                    variant="contained"
-                    color="secondary"
-                    sx={{ mb: 2 }}
-                    onClick={() => { /* Handle create post action here */ }}
-                >
+            {isAdmin && (
+                <Button variant="contained" color="secondary" sx={{ mb: 2 }} onClick={handleOpenModal}>
                     Create Post
                 </Button>
-            ) : <Typography color="error">TEST</Typography>}
+            )}
             <Box sx={{ display: 'flex', justifyContent: 'center', gap: 2, flexWrap: 'wrap' }}>
                 {posts.length > 0 ? (
-                    posts.map((post) => (
-                        <BlogPost key={post.id} post={post} />
-                    ))
+                    posts.map((post) => <BlogPost key={post.id} post={post} />)
                 ) : (
                     <Typography>No blog posts found.</Typography>
                 )}
             </Box>
+
+            {/* Modal for post creation */}
+            <Modal
+                open={openModal}
+                onClose={handleCloseModal}
+                aria-labelledby="create-post-modal"
+                aria-describedby="modal-to-create-post"
+            >
+                <Box
+                    sx={{
+                        position: 'absolute',
+                        top: '50%',
+                        left: '50%',
+                        transform: 'translate(-50%, -50%)',
+                        width: 400,
+                        bgcolor: 'background.paper',
+                        border: '2px solid #000',
+                        boxShadow: 24,
+                        p: 4,
+                        display: 'flex',
+                        flexDirection: 'column',
+                        gap: 2,
+                    }}
+                >
+                    <Typography variant="h6" component="h2" id="create-post-modal">
+                        Create New Post
+                    </Typography>
+                    <TextField
+                        label="Title"
+                        variant="outlined"
+                        value={title}
+                        onChange={(e) => setTitle(e.target.value)}
+                        fullWidth
+                    />
+                    <TextField
+                        label="Body"
+                        variant="outlined"
+                        value={body}
+                        onChange={(e) => setBody(e.target.value)}
+                        multiline
+                        rows={4}
+                        fullWidth
+                    />
+                    <Button variant="contained" color="primary" onClick={handleCreatePost}>
+                        Submit
+                    </Button>
+                </Box>
+            </Modal>
         </Box>
     );
 };

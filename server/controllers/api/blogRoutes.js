@@ -6,9 +6,10 @@ router.get('/', async (req, res) => {
     try {
         const posts = await Post.findAll({
             include: [{
-                model: User,       // The model to include
-                attributes: ['user_name'],  // Only fetch the 'name' attribute of the User model
+                model: User,
+                attributes: ['user_name'], // Fetch 'user_name' attribute of User model
             }],
+            order: [['id', 'DESC']],
         });
 
         const formattedPosts = posts.map(post => ({
@@ -17,8 +18,6 @@ router.get('/', async (req, res) => {
         }));
 
         res.status(200).json(formattedPosts);
-
-        // res.status(200).json(posts);
     } catch (err) {
         console.error('Error fetching Post:', err);
         res.status(500).json({ message: 'An error occurred while fetching Post.', error: err.message });
@@ -27,23 +26,19 @@ router.get('/', async (req, res) => {
 
 router.post('/create', async (req, res) => {
     try {
-        const { title, content, authorId } = req.body;
+        const { title, body } = req.body;
+        const author = req.session.user_id;
 
-        // Check if admin
+        // Check if user is an admin
         if (!req.session.admin) {
             return res.status(403).json({ message: 'Unauthorized. Only admins can create blog posts.' });
         }
 
-        // i dont like how this looks, frontend will validate form inputs so maybe we dont need that at all... ?
-        if (!title || !content || !authorId) {
-            return res.status(400).json({ message: 'Title, content, and authorId are required.' });
-        }
-
-        // Create a new post
+        // Create a new post with title, content, and authorId
         const newPost = await Post.create({
             title,
-            content,
-            authorId
+            body,
+            author,
         });
 
         res.status(201).json(newPost);
@@ -52,6 +47,5 @@ router.post('/create', async (req, res) => {
         res.status(500).json({ message: 'An error occurred while creating the post.', error: err.message });
     }
 });
-
 
 module.exports = router;
