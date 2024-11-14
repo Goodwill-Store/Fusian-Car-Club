@@ -29,9 +29,10 @@ const Hero = ({ onGetStartedClick, onLoginClick }) => {
                 <Typography variant="h5" gutterBottom>
                     Discover amazing content and connect with us!
                 </Typography>
-                {/* <Button variant="contained" color="primary" onClick={onGetStartedClick}>
-                    Get Started
+                <Button variant="contained" color="secondary" href="/events">
+                    Upcoming Events
                 </Button>
+                {/* 
                 <Button variant="contained" color="primary" onClick={onLoginClick}>
                     Login
                 </Button> */}
