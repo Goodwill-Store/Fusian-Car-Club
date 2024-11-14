@@ -24,9 +24,13 @@ const BlogPost = ({ post }) => {
                         dangerouslySetInnerHTML={{ __html: post.body }}
                     />
                 </Typography>
-                <Typography variant="body2" sx={{ color: 'text.secondary', fontStyle: 'italic' }}>
+                <Typography
+                    variant="body2"
+                    sx={{ color: 'text.secondary', fontStyle: 'italic', textAlign: 'right', mt: 2 }}
+                >
                     Author: {post.author}
                 </Typography>
+
             </CardContent>
         </Card>
     );
