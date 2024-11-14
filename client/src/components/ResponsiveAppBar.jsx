@@ -88,7 +88,7 @@ function ResponsiveAppBar() {
     };
 
     return (
-        <AppBar position="static">
+        <AppBar sx={{ mb: 8 }} position="static">
             <Container maxWidth="xl" sx={{ width: '60%' }}>
                 <Toolbar disableGutters>
                     <Box sx={{ display: 'flex', justifyContent: 'center', alignItems: 'center', width: '100%' }}>

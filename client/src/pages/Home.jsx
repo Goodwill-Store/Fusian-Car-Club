@@ -37,7 +37,6 @@ function Home() {
                     alignItems: 'center',
                     justifyContent: 'center',
                     textAlign: 'center',
-                    mt: 8,
                 }}
 
             >

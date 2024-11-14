@@ -23,13 +23,13 @@ const EventCards = ({ event }) => {
             />
             <CardContent sx={{ flex: '1' }}>
                 <Typography gutterBottom variant="h5" component="div">
-                    {event.title} {/* Display event title */}
+                    {event.title}
                 </Typography>
                 <Typography variant="body2" sx={{ color: 'text.secondary' }}>
-                    {event.body} {/* Display event description */}
+                    {event.body}
                 </Typography>
                 <Typography variant="body2" sx={{ color: 'text.secondary', fontStyle: 'italic' }}>
-                    Date: {new Date(event.date).toLocaleDateString()} {/* Display event date */}
+                    Date: {new Date(event.date).toLocaleDateString()}
                 </Typography>
                 <Button
                     size="small"
@@ -39,7 +39,7 @@ const EventCards = ({ event }) => {
                     rel="noopener noreferrer"
                     sx={{ mt: 2 }}
                 >
-                    <LocationOnIcon />
+                    Location  <LocationOnIcon />
                 </Button>
             </CardContent>
         </Card>
