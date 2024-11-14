@@ -114,7 +114,7 @@ function ResponsiveAppBar() {
                                 <Tooltip title="Open settings">
                                     <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
                                         {/* to do: fix icon size */}
-                                        <AccountCircleIcon sx={{ fontSize: 40 }} />
+                                        <AccountCircleIcon sx={{ fontSize: 40, color: 'white' }} />
                                     </IconButton>
                                 </Tooltip>
                             ) : (
