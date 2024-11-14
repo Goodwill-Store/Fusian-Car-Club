@@ -20,7 +20,7 @@ const BlogPost = ({ post }) => {
                 </Typography>
                 <Typography variant="body2" sx={{ color: 'text.secondary' }}>
                     <Box
-                        sx={{ color: 'text.secondary' }}
+                        sx={{ color: 'text.primary' }}
                         dangerouslySetInnerHTML={{ __html: post.body }}
                     />
                 </Typography>
