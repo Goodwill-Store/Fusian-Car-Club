@@ -18,10 +18,10 @@ import SignUpDialog from './SignUpDialog';
 // The page redirects
 const pages = [
     { label: 'Home', url: '/' },
-    { label: 'Merch', url: '/Merch' },
+    { label: 'Merch', url: '/merch' },
     { label: 'Events', url: '/events' },
-    { label: 'Gallery', url: '/Gallery' },
-    { label: 'Blog', url: '/Blog' },
+    { label: 'Gallery', url: '/gallery' },
+    { label: 'Blog', url: '/blog' },
 ];
 const settings = ['Profile', 'Account', 'Dashboard', 'Logout'];
 
