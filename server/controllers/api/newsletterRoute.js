@@ -15,6 +15,9 @@ router.post('/subscribe', async (req, res) => {
             },
         });
 
+
+        //since the subscribe button is not behind login, not every user that subscribes has the account (curretnly that will cause en error), I think we need a seperate table, just for the emails of sunscribed none registered users 
+
         // No user with this email
         if (!existingUser) {
             return res.status(404).json({ message: 'User not found.' });

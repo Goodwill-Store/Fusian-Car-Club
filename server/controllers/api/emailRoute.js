@@ -1,4 +1,8 @@
 // routes/email.js
+// DO NOT USE
+//***********THIS WHOLE MODULE IS JUST FOR TESTING, TO MAKE SURE EMAILS ACTUALLY GO THROUGH (Ana)*/
+
+// THE EMAIL CONFIG FOR THE EMAIL WE USE TO SEND THE NEWSLETTER FROM IS IN THE .ENV FILE, IF YOU GET ERROR YOU PROBABLY HAVE THE OLD ENV FILE THAT DOESN'T HAVE EMAIL CONFIG
 const sendMail = require('../../utils/mailer');
 const router = require('express').Router();
 
