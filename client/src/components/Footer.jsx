@@ -1,3 +1,4 @@
+import React, { useState } from 'react';
 import { Box, List, ListItem, Link, TextField, Button, Typography, IconButton, Divider } from '@mui/material';
 import Grid from '@mui/material/Grid2';
 import GitHubIcon from '@mui/icons-material/GitHub';
@@ -5,7 +6,33 @@ import InstagramIcon from '@mui/icons-material/Instagram';
 import FacebookIcon from '@mui/icons-material/Facebook';
 
 const Footer = () => {
+
+    const [email, setEmail] = useState('');
+    const [message, setMessage] = useState('');
     const currentYear = new Date().getFullYear();
+
+    const handleSubscribe = async () => {
+        try {
+            const response = await fetch('/api/newsletter/subscribe', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({ email }),
+            });
+
+            const result = await response.json();
+            if (response.ok) {
+                setMessage('Subscribed successfully!');
+            } else {
+                setMessage(result.message || 'Failed to subscribe. Please try again.');
+            }
+        } catch (error) {
+            setMessage('An error occurred. Please try again.');
+            console.error('Subscription error:', error);
+        }
+    };
+
     return (
         <Box
             component="footer"
@@ -57,10 +84,22 @@ const Footer = () => {
                             <ListItem>
                                 <Grid container spacing={1} alignItems="center">
                                     <Grid size={{ xs: 8 }}>
-                                        <TextField id="outlined-basic" label="Enter your email" variant="filled" fullWidth />
+                                        <TextField
+                                            id="outlined-basic"
+                                            label="Enter your email"
+                                            variant="filled"
+                                            fullWidth
+                                            value={email}
+                                            onChange={(e) => setEmail(e.target.value)}
+                                        />
                                     </Grid>
                                     <Grid size={{ xs: 4 }}>
-                                        <Button variant="contained" color="secondary" sx={{ height: '56px' }}>
+                                        <Button
+                                            variant="contained"
+                                            color="secondary"
+                                            sx={{ height: '56px' }}
+                                            onClick={handleSubscribe}
+                                        >
                                             Subscribe
                                         </Button>
                                     </Grid>
