@@ -179,6 +179,7 @@ const Footer = () => {
                         variant="outlined"
                         value={email}
                         onChange={(e) => setEmail(e.target.value)}
+                        sx={{ mt: 2 }}
                     />
                 </DialogContent>
                 <DialogActions>
