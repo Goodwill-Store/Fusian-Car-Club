@@ -34,4 +34,34 @@ router.post('/subscribe', async (req, res) => {
     }
 });
 
+router.post('/unsubscribe', async(req, res) => {
+    try {
+        console.log("unsubscribe");
+
+        if(!req.body.email) {
+            return res.status(400).json({ message: 'Email is required.' });
+        }
+        const existingUser = await User.findOne({
+            where: {
+                email: req.body.email,
+            },
+        });
+
+        if (!existingUser) {
+            return res.status(404).json({ message: 'User not found.' });
+        }
+
+        existingUser.subscribed = false;
+        await existingUser.save();
+
+        res.status(200).json({message: 'User unsubscribed', user: existingUser });
+
+    } catch(err) {
+        console.error('unsubscribe error', err);
+        res.status(500).json({ message: 'Unsubscription failed. Please try again.', error: err.message });
+    }
+
+});
+
+
 module.exports = router;
