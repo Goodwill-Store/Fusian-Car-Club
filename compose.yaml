@@ -1,0 +1,32 @@
+services:
+  client:
+    build: ./client
+    command: ["npm", "run", "devhost"]
+    ports:
+      - 5173:5173
+    depends_on:
+      db:
+        condition: service_healthy
+  server:
+    container_name: server
+    env_file: ".env"
+    build: ./server
+    ports:
+      - 3000:3000
+    command: ["node", "server.js"]
+    depends_on:
+      db:
+        condition: service_healthy
+  db:
+    container_name: db
+    env_file: ".env"
+    build: ./db
+    # command: ["echo", "create database `create-database`", "", "|", "mysql", "-u", "mysql", "-p"]
+    ports:
+      - 3306:3306
+    volumes:
+      - ./db/database:/database
+    healthcheck:
+      test: ["CMD", "mysqladmin" ,"ping", "-h", "localhost"]
+      start_period: 30s
+      retries: 5
