@@ -4,7 +4,6 @@ import Grid from '@mui/material/Grid2';
 import GitHubIcon from '@mui/icons-material/GitHub';
 import InstagramIcon from '@mui/icons-material/Instagram';
 import FacebookIcon from '@mui/icons-material/Facebook';
-import { red } from '@mui/material/colors';
 
 const Footer = () => {
     const [email, setEmail] = useState('');
