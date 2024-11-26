@@ -9,10 +9,10 @@ const sequelize = new Sequelize(
   process.env.DB_PASSWORD,
   {
     // Database location
-    host: process.env.DB_HOST,
+    host: process.env.DB_HOST || 'localhost',
     dialect: 'mysql',
-    port: process.env.DB_PORT_PUBLIC
-  },
+    port: process.env.DB_PORT_PUBLIC || 3306,
+  }
 );
 
 //test connection
