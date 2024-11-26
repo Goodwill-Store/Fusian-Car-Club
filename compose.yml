@@ -1,0 +1,18 @@
+version: "3.8"
+services:
+  node:
+    container_name: node_server-fusian-new
+    image: node-server-fusian-new
+    restart: always
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - "3006:3006"
+      - "5173:5173" # Map React app port
+    env_file:
+      - .env
+    #this binds local directory to the app directory inside the container, so changes will reflect right away
+
+    # depends_on:
+    #   - mysql

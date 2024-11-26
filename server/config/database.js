@@ -9,10 +9,9 @@ const sequelize = new Sequelize(
   process.env.DB_PASSWORD,
   {
     // Database location
-    host: 'localhost',
+    host: '135.148.46.157',
     dialect: 'mysql',
-    logging: console.log,
-    port: 3306
+    port: 6603
   },
 );
 
