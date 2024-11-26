@@ -24,8 +24,6 @@ services:
     # command: ["echo", "create database `create-database`", "", "|", "mysql", "-u", "mysql", "-p"]
     ports:
       - 3306:3306
-    volumes:
-      - ./db/database:/database
     healthcheck:
       test: ["CMD", "mysqladmin" ,"ping", "-h", "localhost"]
       start_period: 30s
