@@ -43,6 +43,7 @@ const Blog = ({ urls }) => {
                 if (data.logged_in) {
                     setIsAdmin(data.isAdmin);
                 }
+                console.log(isAdmin);
             } catch (error) {
                 console.error('Error fetching session details:', error);
             }
@@ -96,7 +97,7 @@ const Blog = ({ urls }) => {
                     Create Post
                 </Button>
             )}
-            <Box sx={{ display: 'flex', justifyContent: 'center', gap: 2, flexWrap: 'wrap' }}>
+            <Box sx={{ display: 'flex', width: '80%', justifyContent: 'center', gap: 2, flexWrap: 'wrap' }}>
                 {posts.length > 0 ? (
                     posts.map((post) => <BlogPost key={post.id} post={post} />)
                 ) : (

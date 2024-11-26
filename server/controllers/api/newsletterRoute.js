@@ -20,7 +20,7 @@ router.post('/subscribe', async (req, res) => {
 
         // No user with this email
         if (!existingUser) {
-            return res.status(404).json({ message: 'User not found.' });
+            return res.status(404).json({ message: 'User not found. Please create an account first.' });
         }
 
         existingUser.subscribed = true;

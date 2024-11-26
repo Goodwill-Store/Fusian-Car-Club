@@ -107,10 +107,13 @@ const Footer = () => {
                     <Grid size={{ xs: 12, sm: 12, md: 4 }}>
                         <List>
                             <ListItem sx={{ fontWeight: 'bold' }}>
-                                Subscribe to our newsletter
+                                Subscribe to our newsletter.
                             </ListItem>
                             <ListItem variant="p">
                                 The latest news, articles, and resources, sent to your inbox weekly.
+                            </ListItem>
+                            <ListItem sx={{ color: "red" }} variant="p">
+                                {message}
                             </ListItem>
                             <ListItem>
                                 <Grid container spacing={1} alignItems="center">
