@@ -46,8 +46,6 @@ router.post('/signup', async (req, res) => {
   }
 });
 
-
-
 router.post('/login', async (req, res) => {
   try {
     console.log(req.body.username);
@@ -60,8 +58,7 @@ router.post('/login', async (req, res) => {
       return res.status(400).json({ message: 'Incorrect username or password. Please try again!' });
     }
 
-    const validPassword = await userData.checkPassword(req.body.password);  // Assuming checkPassword is async
-
+    const validPassword = await userData.checkPassword(req.body.password);
     if (validPassword) {
       // Save session and return success response
       req.session.save(() => {
@@ -83,7 +80,6 @@ router.post('/login', async (req, res) => {
     res.status(500).json(err);
   }
 });
-
 
 router.get('/session', (req, res) => {
   console.log('/session');

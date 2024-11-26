@@ -23,7 +23,7 @@ const pages = [
     { label: 'Gallery', url: '/gallery' },
     { label: 'Blog', url: '/blog' },
 ];
-const settings = ['Profile', 'Account', 'Dashboard', 'Logout'];
+const settings = ['Profile', 'Logout'];
 
 function ResponsiveAppBar() {
     const [isAuthenticated, setIsAuthenticated] = useState(false);

@@ -7,7 +7,7 @@ router.get('/', async (req, res) => {
         const items = await Inventory.findAll({
             where: {
                 count: {
-                    [Op.ne]: 0,  // Ensures count is not equal to 0
+                    [Op.ne]: 0,  // Ensures count is not 0
                 }
             }
         });

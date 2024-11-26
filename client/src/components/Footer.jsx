@@ -1,11 +1,61 @@
-import { Box, List, ListItem, Link, TextField, Button, Typography, IconButton, Divider } from '@mui/material';
+import React, { useState } from 'react';
+import { Box, List, ListItem, Link, TextField, Button, Typography, IconButton, Divider, Dialog, DialogTitle, DialogContent, DialogActions } from '@mui/material';
 import Grid from '@mui/material/Grid2';
 import GitHubIcon from '@mui/icons-material/GitHub';
 import InstagramIcon from '@mui/icons-material/Instagram';
 import FacebookIcon from '@mui/icons-material/Facebook';
 
 const Footer = () => {
+    const [email, setEmail] = useState('');
+    const [message, setMessage] = useState('');
+    const [unsubscribeOpen, setUnsubscribeOpen] = useState(false);
     const currentYear = new Date().getFullYear();
+
+    const handleSubscribe = async () => {
+        try {
+            const response = await fetch('/api/newsletter/subscribe', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({ email }),
+            });
+
+            const result = await response.json();
+            if (response.ok) {
+                setMessage('Subscribed successfully!');
+            } else {
+                setMessage(result.message || 'Failed to subscribe. Please try again.');
+            }
+        } catch (error) {
+            setMessage('An error occurred. Please try again.');
+            console.error('Subscription error:', error);
+        }
+    };
+
+    const handleUnsubscribe = async () => {
+        try {
+            const response = await fetch('/api/newsletter/unsubscribe', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({ email }),
+            });
+
+            const result = await response.json();
+            if (response.ok) {
+                setMessage('Unsubscribed successfully!');
+                setUnsubscribeOpen(false); // Close the modal
+            } else {
+                setMessage(result.message || 'Failed to unsubscribe. Please try again.');
+            }
+        } catch (error) {
+            setMessage('An error occurred. Please try again.');
+            console.error('Unsubscription error:', error);
+        }
+    };
+
     return (
         <Box
             component="footer"
@@ -20,7 +70,7 @@ const Footer = () => {
                 <Grid container spacing={2}>
                     <Grid size={{ xs: 12, sm: 6, md: 2 }}>
                         <List>
-                            <ListItem sx={{ fontWeight: 'bold' }}>Solutions </ListItem>
+                            <ListItem sx={{ fontWeight: 'bold' }}>Solutions</ListItem>
                             <ListItem><Link href="#">Gallery</Link></ListItem>
                             <ListItem><Link href="#">Events</Link></ListItem>
                             <ListItem><Link href="#">Blog</Link></ListItem>
@@ -36,7 +86,6 @@ const Footer = () => {
                         <List>
                             <ListItem sx={{ fontWeight: 'bold' }}>Company</ListItem>
                             <ListItem><Link href="#">About Us</Link></ListItem>
-
                         </List>
                     </Grid>
                     <Grid size={{ xs: 12, sm: 6, md: 2 }}>
@@ -44,6 +93,15 @@ const Footer = () => {
                             <ListItem sx={{ fontWeight: 'bold' }}>Legal</ListItem>
                             <ListItem><Link href="#">Terms</Link></ListItem>
                             <ListItem><Link href="#">Disclaimers</Link></ListItem>
+                            <ListItem>
+                                <Link
+                                    href="#"
+                                    onClick={() => setUnsubscribeOpen(true)}
+                                    underline="hover"
+                                >
+                                    Unsubscribe
+                                </Link>
+                            </ListItem>
                         </List>
                     </Grid>
                     <Grid size={{ xs: 12, sm: 12, md: 4 }}>
@@ -57,10 +115,22 @@ const Footer = () => {
                             <ListItem>
                                 <Grid container spacing={1} alignItems="center">
                                     <Grid size={{ xs: 8 }}>
-                                        <TextField id="outlined-basic" label="Enter your email" variant="filled" fullWidth />
+                                        <TextField
+                                            id="outlined-basic"
+                                            label="Enter your email"
+                                            variant="filled"
+                                            fullWidth
+                                            value={email}
+                                            onChange={(e) => setEmail(e.target.value)}
+                                        />
                                     </Grid>
                                     <Grid size={{ xs: 4 }}>
-                                        <Button variant="contained" color="secondary" sx={{ height: '56px' }}>
+                                        <Button
+                                            variant="contained"
+                                            color="secondary"
+                                            sx={{ height: '56px' }}
+                                            onClick={handleSubscribe}
+                                        >
                                             Subscribe
                                         </Button>
                                     </Grid>
@@ -98,6 +168,27 @@ const Footer = () => {
                     </IconButton>
                 </Box>
             </Box>
+
+            {/* Unsubscribe Modal */}
+            <Dialog open={unsubscribeOpen} onClose={() => setUnsubscribeOpen(false)}>
+                <DialogTitle>Unsubscribe</DialogTitle>
+                <DialogContent>
+                    <TextField
+                        fullWidth
+                        label="Enter your email"
+                        variant="outlined"
+                        value={email}
+                        onChange={(e) => setEmail(e.target.value)}
+                        sx={{ mt: 2 }}
+                    />
+                </DialogContent>
+                <DialogActions>
+                    <Button onClick={() => setUnsubscribeOpen(false)}>Cancel</Button>
+                    <Button variant="contained" color="secondary" onClick={handleUnsubscribe}>
+                        Unsubscribe
+                    </Button>
+                </DialogActions>
+            </Dialog>
         </Box>
     );
 };

@@ -6,7 +6,7 @@ const { Op } = require('sequelize');
 router.get('/', async (req, res) => {
     try {
         const today = new Date(); // Get the current date
-        today.setHours(0, 0, 0, 0); // Set time to midnight to ignore time part
+        today.setHours(0, 0, 0, 0); // Set time to midnight
 
         const upcomingEvents = await Events.findAll({
             where: {
@@ -14,7 +14,7 @@ router.get('/', async (req, res) => {
                     [Op.gte]: today // Get events where date is today or greater
                 }
             },
-            order: [['date', 'ASC']] // Optional: Order events by date
+            order: [['date', 'ASC']] //Order events by date
         });
 
         res.status(200).json(upcomingEvents);
@@ -23,5 +23,7 @@ router.get('/', async (req, res) => {
         res.status(500).json({ message: 'An error occurred while fetching events.', error: err.message });
     }
 });
+
+// TODO: ADD A POST ROUTE TO CREATE EVENTS. YOU CAN REFERENCE router.post('/create'... FUNCTION FROM THE blogRoutes.js MODULE
 
 module.exports = router;
