@@ -9,9 +9,9 @@ const sequelize = new Sequelize(
   process.env.DB_PASSWORD,
   {
     // Database location
-    host: '135.148.46.157',
+    host: process.env.DB_HOST,
     dialect: 'mysql',
-    port: 6603
+    port: process.env.DB_PORT_PUBLIC
   },
 );
 

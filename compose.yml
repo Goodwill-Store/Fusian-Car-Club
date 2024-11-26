@@ -9,10 +9,6 @@ services:
       dockerfile: Dockerfile
     ports:
       - "3006:3006"
-      - "5173:5173" # Map React app port
+      - 5173:5173 # Map React app port
     env_file:
       - .env
-    #this binds local directory to the app directory inside the container, so changes will reflect right away
-
-    # depends_on:
-    #   - mysql
