@@ -11,6 +11,10 @@ const Events = () => {
     const [openModal, setOpenModal] = useState(false);
     const [title, setTitle] = useState('');
     const [body, setBody] = useState('');
+    const [image, setImage] = useState('');
+    const [date, setDate] = useState('');
+    const [location, setLocation] = useState('');
+
 
     useEffect(() => {
         const fetchEvents = async () => {
@@ -69,14 +73,13 @@ const Events = () => {
                 credentials: 'include',
             });
             if (response.ok) {
-                const newPost = await response.json();
-                setPosts([newPost, ...posts]); // Add new post to top of the list
+                const newEvent = await response.json();
+                setEvents([newEvent, ...events]); // Add new post to top of the list
                 setTitle('');
                 setBody('');
                 setDate('');
                 setLocation('');
                 setImage('');
-                setBody('');
                 handleCloseModal();
             } else {
                 console.error('Failed to create post');
@@ -152,7 +155,6 @@ const Events = () => {
                     <TextField
                         label="Date"
                         type="date"
-                        value={date}
                         onChange={(e) => setDate(e.target.value)}
                         InputLabelProps={{ shrink: true }}
                         fullWidth
@@ -169,6 +171,12 @@ const Events = () => {
                         onChange={(e) => setBody(e.target.value)}
                         multiline
                         rows={4}
+                        fullWidth
+                    />
+                    <TextField
+                        label="Image"
+                        value={image}
+                        onChange={(e) => setImage(e.target.value)}
                         fullWidth
                     />
                     <Button variant="contained" color="primary" onClick={handleCreateEvent}>

@@ -27,30 +27,23 @@ router.get('/', async (req, res) => {
 // TODO: ADD A POST ROUTE TO CREATE EVENTS. YOU CAN REFERENCE router.post('/create'... FUNCTION FROM THE blogRoutes.js MODULE
 
 router.post('/create', async (req, res) => {
+
     try {
-
-        console.log("Hi")
-        const { title, date, location, image, body } = req.body;
-        const author = req.session.user_id;
-
-        // Check if user is an admin
-        if (!req.session.admin) {
-            return res.status(403).json({ message: 'Unauthorized. Only admins can create blog posts.' });
-        }
-
+        const { title, body, date, image, location } = req.body;
 
         const newEvent = await Events.create({
             title,
             body,
-            date,
             location,
             image,
+            date
+
         });
 
-        res.status(201).json(newEvent);
+        res.status(200).json(newEvent);
     } catch (err) {
-        console.error('Error creating post:', err);
-        res.status(500).json({ message: 'An error occurred while creating the post.', error: err.message });
+        console.error('Error fetching upcoming events:', err);
+        res.status(500).json({ message: 'An error occurred while fetching events.', error: err.message });
     }
 });
 
