@@ -29,7 +29,6 @@ const sequelize = new Sequelize(
   },
 );
 
-
 //test connection
 (async () => {
   try {

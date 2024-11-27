@@ -7,7 +7,7 @@ export default defineConfig({
     proxy: {
       '/api': {
         //google docker network, you should be able to communicate using container names instead of IP addresses
-        target: `http://${process.env.SERVER_HOST}:${process.env.DB_PORT_PUBLIC}`, // Backend server (Node.js)
+        target: `http://${process.env.SERVER_HOST}:${process.env.SERVER_PORT}`, // Backend server (Node.js)
         changeOrigin: true,
         secure: false,
       }
