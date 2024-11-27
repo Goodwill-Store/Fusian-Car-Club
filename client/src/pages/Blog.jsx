@@ -11,8 +11,10 @@ const Blog = ({ urls }) => {
     const [error, setError] = useState(null);
     const [isAdmin, setIsAdmin] = useState(false);
     const [openModal, setOpenModal] = useState(false);
-    const [title, setTitle] = useState('');
-    const [body, setBody] = useState('');
+    const [title, setTitle] = useState(''); // Event title
+    const [date, setDate] = useState(''); // Event date
+    const [location, setLocation] = useState(''); // Event location
+    const [body, setBody] = useState(''); // Event body
 
     useEffect(() => {
         const fetchPosts = async () => {

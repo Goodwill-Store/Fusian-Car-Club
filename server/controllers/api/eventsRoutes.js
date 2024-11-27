@@ -28,6 +28,8 @@ router.get('/', async (req, res) => {
 
 router.post('/create', async (req, res) => {
     try {
+
+        console.log("Hi")
         const { title, date, location, image, body } = req.body;
         const author = req.session.user_id;
 

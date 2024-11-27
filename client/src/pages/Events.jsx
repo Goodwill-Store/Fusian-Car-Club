@@ -103,26 +103,26 @@ const Events = () => {
     }
 
     return (
-        <Box sx={{ display: 'flex', justifyContent: 'center', gap: 2, my: 2, flexWrap: 'wrap' }}>
+        <Box sx={{ display: 'flex', flexDirection: 'column', alignItems: 'center', my: 2 }}>
             {isAdmin && (
                 <Button variant="contained" color="secondary" sx={{ mb: 2 }} onClick={handleOpenModal}>
-                    Create Post
+                    Create Event
                 </Button>
             )}
-            {events.length > 0 ? (
-                events.map((event) => (
-                    <EventCards key={event.id} event={event} /> // Pass the event data to EventCards component
-                ))
-            ) : (
-                <Typography>No upcoming events found.</Typography> // Message if no events are available
-            )}
+            <Box sx={{ display: 'flex', justifyContent: 'center', gap: 2, flexWrap: 'wrap', width: '80%' }}>
+                {events.length > 0 ? (
+                    events.map((event) => <EventCards key={event.id} event={event} />)
+                ) : (
+                    <Typography>No upcoming events found.</Typography>
+                )}
+            </Box>
 
-            {/* Modal for post creation */}
+            {/* Modal for creating a new event */}
             <Modal
                 open={openModal}
                 onClose={handleCloseModal}
-                aria-labelledby="create-post-modal"
-                aria-describedby="modal-to-create-post"
+                aria-labelledby="create-event-modal"
+                aria-describedby="modal-to-create-event"
             >
                 <Box
                     sx={{
@@ -130,7 +130,7 @@ const Events = () => {
                         top: '50%',
                         left: '50%',
                         transform: 'translate(-50%, -50%)',
-                        width: '60%',
+                        width: '50%',
                         bgcolor: 'background.paper',
                         border: '2px solid #000',
                         boxShadow: 24,
@@ -140,21 +140,36 @@ const Events = () => {
                         gap: 2,
                     }}
                 >
-                    <Typography variant="h6" component="h2" id="create-post-modal">
-                        Create New Post
+                    <Typography id="create-event-modal" variant="h6" component="h2">
+                        Create New Event
                     </Typography>
                     <TextField
                         label="Title"
-                        variant="outlined"
                         value={title}
                         onChange={(e) => setTitle(e.target.value)}
                         fullWidth
                     />
-                    <ReactQuill
+                    <TextField
+                        label="Date"
+                        type="date"
+                        value={date}
+                        onChange={(e) => setDate(e.target.value)}
+                        InputLabelProps={{ shrink: true }}
+                        fullWidth
+                    />
+                    <TextField
+                        label="Location"
+                        value={location}
+                        onChange={(e) => setLocation(e.target.value)}
+                        fullWidth
+                    />
+                    <TextField
+                        label="Description"
                         value={body}
-                        onChange={setBody}
-                        placeholder="Write your post content here..."
-                        style={{ height: '200px' }}
+                        onChange={(e) => setBody(e.target.value)}
+                        multiline
+                        rows={4}
+                        fullWidth
                     />
                     <Button variant="contained" color="primary" onClick={handleCreateEvent}>
                         Submit
