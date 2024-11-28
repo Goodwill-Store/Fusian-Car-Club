@@ -3,19 +3,6 @@ const mysql = require("mysql2/promise");
 require('dotenv').config();
 console.log('DB_NAME:', process.env.DB_NAME); // Log to check if values are loaded
 
-init();
-
-async function init()
-{
-  const connection = await mysql.createConnection({
-    host: process.env.DB_HOST || 'localhost',
-    port: process.env.DB_PORT_PUBLIC,
-    user: process.env.DB_USER,
-    password: process.env.DB_PASSWORD
-  })
-  await connection.query(`CREATE DATABASE IF NOT EXISTS \`${process.env.DB_NAME}\`;`);
-}
-
 // Create a connection object
 const sequelize = new Sequelize(
   process.env.DB_NAME,
