@@ -6,6 +6,7 @@ import Merch from './pages/Merch';
 import Events from './pages/Events';
 import Gallery from './pages/Gallery';
 import Blog from './pages/Blog';
+import About from './pages/About'
 import ResponsiveAppBar from './components/ResponsiveAppBar';
 import Footer from './components/Footer';
 import { ThemeProvider } from '@mui/material/styles';
@@ -36,6 +37,7 @@ function App() {
               <Route path="/events" element={<Events />} />
               <Route path="/merch" element={<Merch />} />
               <Route path="/blog" element={<Blog />} />
+              <Route path="/about" element={<About />} />
             </Routes>
           </Box>
 

@@ -26,4 +26,25 @@ router.get('/', async (req, res) => {
 
 // TODO: ADD A POST ROUTE TO CREATE EVENTS. YOU CAN REFERENCE router.post('/create'... FUNCTION FROM THE blogRoutes.js MODULE
 
+router.post('/create', async (req, res) => {
+
+    try {
+        const { title, body, date, image, location } = req.body;
+
+        const newEvent = await Events.create({
+            title,
+            body,
+            location,
+            image,
+            date
+
+        });
+
+        res.status(200).json(newEvent);
+    } catch (err) {
+        console.error('Error fetching upcoming events:', err);
+        res.status(500).json({ message: 'An error occurred while fetching events.', error: err.message });
+    }
+});
+
 module.exports = router;

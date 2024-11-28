@@ -30,16 +30,10 @@ Events.init(
         location: {
             type: DataTypes.STRING,
             allowNull: false,
-            validate: {
-                isUrl: true,
-            },
         },
         image: {
             type: DataTypes.STRING,
             allowNull: false,
-            validate: {
-                isUrl: true,
-            },
         },
     },
     {

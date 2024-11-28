@@ -23,13 +23,11 @@ const sequelize = new Sequelize(
   process.env.DB_PASSWORD,
   {
     // Database location
-    host: 'db',
+    host: process.env.DB_HOST || 'localhost',
     dialect: 'mysql',
-    logging: console.log,
-    port: 3306
-  },
+    port: process.env.DB_PORT_PUBLIC || 3306,
+  }
 );
-
 
 //test connection
 (async () => {
