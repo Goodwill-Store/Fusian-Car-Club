@@ -1,4 +1,5 @@
 const Sequelize = require('sequelize');
+const mysql = require("mysql2/promise");
 require('dotenv').config();
 console.log('DB_NAME:', process.env.DB_NAME); // Log to check if values are loaded
 

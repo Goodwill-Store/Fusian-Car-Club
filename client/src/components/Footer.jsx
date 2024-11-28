@@ -71,37 +71,15 @@ const Footer = () => {
                     <Grid size={{ xs: 12, sm: 6, md: 2 }}>
                         <List>
                             <ListItem sx={{ fontWeight: 'bold' }}>Solutions</ListItem>
-                            <ListItem><Link href="#">Gallery</Link></ListItem>
-                            <ListItem><Link href="#">Events</Link></ListItem>
-                            <ListItem><Link href="#">Blog</Link></ListItem>
-                        </List>
-                    </Grid>
-                    <Grid size={{ xs: 12, sm: 6, md: 2 }}>
-                        <List>
-                            <ListItem sx={{ fontWeight: 'bold' }}>Pricing</ListItem>
-                            <ListItem><Link href="#">Merch</Link></ListItem>
+                            <ListItem><Link href="/gallery">Gallery</Link></ListItem>
+                            <ListItem><Link href="/events">Events</Link></ListItem>
+                            <ListItem><Link href="/blog">Blog</Link></ListItem>
                         </List>
                     </Grid>
                     <Grid size={{ xs: 12, sm: 6, md: 2 }}>
                         <List>
                             <ListItem sx={{ fontWeight: 'bold' }}>Company</ListItem>
-                            <ListItem><Link href="#">About Us</Link></ListItem>
-                        </List>
-                    </Grid>
-                    <Grid size={{ xs: 12, sm: 6, md: 2 }}>
-                        <List>
-                            <ListItem sx={{ fontWeight: 'bold' }}>Legal</ListItem>
-                            <ListItem><Link href="#">Terms</Link></ListItem>
-                            <ListItem><Link href="#">Disclaimers</Link></ListItem>
-                            <ListItem>
-                                <Link
-                                    href="#"
-                                    onClick={() => setUnsubscribeOpen(true)}
-                                    underline="hover"
-                                >
-                                    Unsubscribe
-                                </Link>
-                            </ListItem>
+                            <ListItem><Link href="/about">About Us</Link></ListItem>
                         </List>
                     </Grid>
                     <Grid size={{ xs: 12, sm: 12, md: 4 }}>
@@ -138,6 +116,15 @@ const Footer = () => {
                                         </Button>
                                     </Grid>
                                 </Grid>
+                            </ListItem>
+                            <ListItem>
+                                <Link
+                                    href="#"
+                                    onClick={() => setUnsubscribeOpen(true)}
+                                    underline="hover"
+                                >
+                                    Unsubscribe
+                                </Link>
                             </ListItem>
                         </List>
                     </Grid>

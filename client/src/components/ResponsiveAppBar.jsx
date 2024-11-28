@@ -18,7 +18,6 @@ import SignUpDialog from './SignUpDialog';
 // The page redirects
 const pages = [
     { label: 'Home', url: '/' },
-    { label: 'Merch', url: '/merch' },
     { label: 'Events', url: '/events' },
     { label: 'Gallery', url: '/gallery' },
     { label: 'Blog', url: '/blog' },

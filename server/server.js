@@ -4,7 +4,7 @@ const routes = require('./controllers');
 const sequelize = require('./config/database');
 const SequelizeStore = require('connect-session-sequelize')(session.Store);
 const app = express();
-const PORT = process.env.PORT || 3000;
+const PORT = process.env.PORT || process.env.SERVER_PORT || 3000;
 
 const sess = {
   secret: 'Super secret secret',
