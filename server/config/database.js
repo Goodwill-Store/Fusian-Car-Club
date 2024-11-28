@@ -8,8 +8,8 @@ init();
 async function init()
 {
   const connection = await mysql.createConnection({
-    host: 'db',
-    port: 3306,
+    host: process.env.DB_HOST || 'localhost',
+    port: process.env.DB_PORT_PUBLIC,
     user: process.env.DB_USER,
     password: process.env.DB_PASSWORD
   })
