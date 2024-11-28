@@ -117,6 +117,15 @@ const Footer = () => {
                                     </Grid>
                                 </Grid>
                             </ListItem>
+                            <ListItem>
+                                <Link
+                                    href="#"
+                                    onClick={() => setUnsubscribeOpen(true)}
+                                    underline="hover"
+                                >
+                                    Unsubscribe
+                                </Link>
+                            </ListItem>
                         </List>
                     </Grid>
                 </Grid>
